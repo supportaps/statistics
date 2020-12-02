@@ -1,13 +1,13 @@
 import tkinter
 import datetime
-
-
+from tkinter import ttk
 
 from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg)
 from matplotlib.figure import Figure
 from tkcalendar import DateEntry, Calendar
-
+from config.config import query
+from controller.backend import get_columns
 
 class GraphicView:
 
@@ -34,6 +34,21 @@ class GraphicView:
         self.cal_end_ent.pack(padx=10, pady=10)
 
 
+        self.columns = get_columns()
+
+
+        self.om_chosen1 = tkinter.StringVar()
+
+        self.cb1 = ttk.Combobox(self.input_data_fr, values=self.columns)
+        self.cb2 = ttk.Combobox(self.input_data_fr, values=self.columns)
+        self.cb3 = ttk.Combobox(self.input_data_fr, values=self.columns)
+        self.cb4 = ttk.Combobox(self.input_data_fr, values=self.columns)
+        self.cb5 = ttk.Combobox(self.input_data_fr, values=self.columns)
+        self.cb6 = ttk.Combobox(self.input_data_fr, values=self.columns)
+        self.cb7 = ttk.Combobox(self.input_data_fr, values=self.columns)
+        self.cb8 = ttk.Combobox(self.input_data_fr, values=self.columns)
+
+
 
 
 
@@ -42,7 +57,14 @@ class GraphicView:
         self.input_cell_name_lb.pack(side='top')
         self.input_cell_name_ent.pack(side='top',padx=5, pady=5)
         self.input_data_fr.pack(side='left',fill='y')
-
+        self.cb1.pack()
+        self.cb2.pack()
+        self.cb3.pack()
+        self.cb4.pack()
+        self.cb5.pack()
+        self.cb6.pack()
+        self.cb7.pack()
+        self.cb8.pack()
 
         f = Figure(figsize=(8, 2), dpi=100)
         a = f.add_subplot(111)

@@ -13,4 +13,4 @@ def config_connect():
 def query():
     config = configparser.ConfigParser()
     config.read('settings.ini')
-    return config['query']['test_query']
+    return config['query']['test_query'], config['query']['col_query']
