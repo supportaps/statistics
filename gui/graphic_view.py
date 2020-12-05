@@ -6,12 +6,14 @@ from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg)
 from matplotlib.figure import Figure
 from tkcalendar import DateEntry, Calendar
-from config.config import query
-from controller.backend import get_columns_2g_h
+
+from controller.backend import GetKpi
+
 
 class GraphicView:
 
     def __init__(self, x, y):
+        self.columns = GetKpi()
         self.x = x
         self.y = y
 
@@ -33,6 +35,7 @@ class GraphicView:
         self.cal_end_ent.pack(padx=10, pady=10)
 
         self.var_tech = tkinter.IntVar()
+        self.var_tech.set(0)
         self.choose_tech_gsm_rb = tkinter.Radiobutton(self.input_data_fr, text='GSM', variable=self.var_tech, value=1, command='')
         self.choose_tech_gsm_rb.pack(side='top')
         self.choose_tech_wcdma_rb = tkinter.Radiobutton(self.input_data_fr, text='WCDMA', variable=self.var_tech, value=2, command='')
@@ -41,6 +44,7 @@ class GraphicView:
         self.choose_tech_lte_rb.pack(side='top')
 
         self.var_period = tkinter.IntVar()
+        self.var_tech.set(0)
         self.choose_hourly_rb = tkinter.Radiobutton(self.input_data_fr, text='Hourly', variable=self.var_period, value=1, command='')
         self.choose_hourly_rb.pack(side='top')
         self.choose_daily_rb = tkinter.Radiobutton(self.input_data_fr, text='Daily', variable=self.var_period, value=2, command='')
@@ -61,7 +65,7 @@ class GraphicView:
 
 
 
-        self.columns = get_columns_2g_h()
+        self.column = self.columns.get_columns_2g_h()
         self.om_chosen1 = tkinter.StringVar()
 
         self.cb1 = ttk.Combobox(self.input_data_fr, values=self.columns)
@@ -96,7 +100,7 @@ class GraphicView:
 
         canvas = FigureCanvasTkAgg(f, self.main_window)
         canvas.draw()
-        canvas.get_tk_widget().pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
+        canvas.get_tk_widget().pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=0)
         tkinter.mainloop()
 
     def draw_plot(self):
