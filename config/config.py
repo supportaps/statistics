@@ -40,3 +40,27 @@ class Config:
     def query_head_4gd(self):
         self.config.read('settings.ini')
         return self.config['query_4g_d']['col_query_4g_d']
+
+    def n1(self):
+        self.config.read('settings.ini')
+        return self.config['name1']['2gh']
+
+    def n2(self):
+        self.config.read('settings.ini')
+        return self.config['name2']['2gd']
+
+    def n3(self):
+        self.config.read('settings.ini')
+        return self.config['name3']['3gh']
+
+    def n4(self):
+        self.config.read('settings.ini')
+        return self.config['name4']['3gd']
+
+    def n5(self):
+        self.config.read('settings.ini')
+        return self.config['name5']['4gh']
+
+    def n6(self):
+        self.config.read('settings.ini')
+        return self.config['name6']['4gd']

@@ -85,3 +85,20 @@ class GetKpi:
         return result_set
         cursor.close()
 
+    def get_n1(self):
+        return self.config.n1()
+
+    def get_n2(self):
+        return self.config.n2()
+
+    def get_n3(self):
+        return self.config.n3()
+
+    def get_n4(self):
+        return self.config.n4()
+
+    def get_n5(self):
+        return self.config.n5()
+
+    def get_n6(self):
+        return self.config.n6()
