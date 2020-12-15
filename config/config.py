@@ -1,9 +1,12 @@
 import configparser
 
 
+
+
 class Config:
     def __init__(self):
         self.config = configparser.ConfigParser()
+
 
     def config_dsn(self):
         self.config.read('settings.ini')
@@ -64,3 +67,5 @@ class Config:
     def n6(self):
         self.config.read('settings.ini')
         return self.config['name6']['4gd']
+
+

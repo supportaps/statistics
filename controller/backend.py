@@ -3,9 +3,40 @@ import cx_Oracle
 from config.config import Config
 
 
+
 class GetKpi:
     def __init__(self):
         self.config = Config()
+
+
+    def conn_driver(self):
+        config = Config()
+        config_data = config.config_dsn()
+        for data in range(len(config_data)):
+            cx_Oracle.init_oracle_client(
+                lib_dir=rf"{config_data[0]}")
+            break
+
+    def oracle_db_conn(self):
+        config = Config()
+        config_data = config.config_dsn()
+
+
+        dsn = cx_Oracle.makedsn(config_data[1], config_data[2], service_name=config_data[3])
+        config_connection = config.config_connect()
+        for i in range(len(config_connection)):
+            connection = cx_Oracle.connect(config_connection[0], config_connection[1], dsn, encoding="UTF-8")
+        cursor = connection.cursor()
+        config_query = config.query_graphic()
+
+        cursor.execute(config_query)
+        result_set = cursor.fetchall()
+        result_list = []
+        for row in result_set:
+            result_list.append(row)
+        print(result_list)
+        return result_list
+        cursor.close()
 
 
 
@@ -102,3 +133,29 @@ class GetKpi:
 
     def get_n6(self):
         return self.config.n6()
+
+    def get_data_for_graphic1(self, cell, kpi, n):
+
+        cursor, result_list = self.db_conn()
+
+        for kpi_item in range(len(kpi.kpi_list)):
+            query = f"select datetime, {kpi.kpi_list[0]} from {n} where lac = '{cell.lac}' and ci = '{cell.cell_id}' and datetime between '{kpi.start_date}' and '{kpi.end_date}'"
+        print(query)
+        cursor.execute(query)
+        result_set = cursor.fetchall()
+        print("In backend:",result_set)
+        return result_set
+        cursor.close()
+
+    def get_data_for_graphic2(self, cell, kpi, n):
+
+        cursor, result_list = self.db_conn()
+
+        for kpi_item in range(len(kpi.kpi_list)):
+            query = f"select datetime, {kpi.kpi_list[1]} from {n} where lac = '{cell.lac}' and ci = '{cell.cell_id}' and datetime between '{kpi.start_date}' and '{kpi.end_date}'"
+        print(query)
+        cursor.execute(query)
+        result_set = cursor.fetchall()
+        print("In backend:",result_set)
+        return result_set
+        cursor.close()
