@@ -225,8 +225,21 @@ class Gui:
 
         result_for_graphic1 = self.kpi_data.get_data_for_graphic1(cell, kpi_item, n)
         result_for_graphic2 = self.kpi_data.get_data_for_graphic2(cell, kpi_item, n)
+        result_for_graphic3 = self.kpi_data.get_data_for_graphic3(cell, kpi_item, n)
+        result_for_graphic4 = self.kpi_data.get_data_for_graphic4(cell, kpi_item, n)
+        result_for_graphic5 = self.kpi_data.get_data_for_graphic5(cell, kpi_item, n)
+        result_for_graphic6 = self.kpi_data.get_data_for_graphic6(cell, kpi_item, n)
+        result_for_graphic7 = self.kpi_data.get_data_for_graphic7(cell, kpi_item, n)
+        result_for_graphic8 = self.kpi_data.get_data_for_graphic8(cell, kpi_item, n)
 
-        print("In GUI", result_for_graphic1)
+
         self.graphic.update_plot_graphik1(result_for_graphic1)
         self.graphic.update_plot_graphik2(result_for_graphic2)
-        #return result_for_graphic1
+        self.graphic.update_plot_graphik3(result_for_graphic3)
+        self.graphic.update_plot_graphik4(result_for_graphic4)
+        self.graphic.update_plot_graphik5(result_for_graphic5)
+        self.graphic.update_plot_graphik6(result_for_graphic6)
+        self.graphic.update_plot_graphik7(result_for_graphic7)
+        self.graphic.update_plot_graphik8(result_for_graphic8)
+
+

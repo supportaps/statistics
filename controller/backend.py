@@ -143,7 +143,6 @@ class GetKpi:
         print(query)
         cursor.execute(query)
         result_set = cursor.fetchall()
-        print("In backend:",result_set)
         return result_set
         cursor.close()
 
@@ -153,9 +152,92 @@ class GetKpi:
 
         for kpi_item in range(len(kpi.kpi_list)):
             query = f"select datetime, {kpi.kpi_list[1]} from {n} where lac = '{cell.lac}' and ci = '{cell.cell_id}' and datetime between '{kpi.start_date}' and '{kpi.end_date}'"
-        print(query)
+
         cursor.execute(query)
         result_set = cursor.fetchall()
-        print("In backend:",result_set)
+        return result_set
+        cursor.close()
+
+    def get_data_for_graphic3(self, cell, kpi, n):
+
+        cursor, result_list = self.db_conn()
+
+        for kpi_item in range(len(kpi.kpi_list)):
+            query = f"select datetime, {kpi.kpi_list[2]} from {n} where lac = '{cell.lac}' and ci = '{cell.cell_id}' and datetime between '{kpi.start_date}' and '{kpi.end_date}'"
+
+        cursor.execute(query)
+        result_set = cursor.fetchall()
+        return result_set
+        cursor.close()
+
+    def get_data_for_graphic4(self, cell, kpi, n):
+
+        cursor, result_list = self.db_conn()
+
+        for kpi_item in range(len(kpi.kpi_list)):
+            query = f"select datetime, {kpi.kpi_list[3]} from {n} where lac = '{cell.lac}' and ci = '{cell.cell_id}' and datetime between '{kpi.start_date}' and '{kpi.end_date}'"
+
+        cursor.execute(query)
+        result_set = cursor.fetchall()
+        return result_set
+        cursor.close()
+
+    def get_data_for_graphic4(self, cell, kpi, n):
+
+        cursor, result_list = self.db_conn()
+
+        for kpi_item in range(len(kpi.kpi_list)):
+            query = f"select datetime, {kpi.kpi_list[3]} from {n} where lac = '{cell.lac}' and ci = '{cell.cell_id}' and datetime between '{kpi.start_date}' and '{kpi.end_date}'"
+
+        cursor.execute(query)
+        result_set = cursor.fetchall()
+        return result_set
+        cursor.close()
+
+    def get_data_for_graphic5(self, cell, kpi, n):
+
+        cursor, result_list = self.db_conn()
+
+        for kpi_item in range(len(kpi.kpi_list)):
+            query = f"select datetime, {kpi.kpi_list[4]} from {n} where lac = '{cell.lac}' and ci = '{cell.cell_id}' and datetime between '{kpi.start_date}' and '{kpi.end_date}'"
+
+        cursor.execute(query)
+        result_set = cursor.fetchall()
+        return result_set
+        cursor.close()
+
+    def get_data_for_graphic6(self, cell, kpi, n):
+
+        cursor, result_list = self.db_conn()
+
+        for kpi_item in range(len(kpi.kpi_list)):
+            query = f"select datetime, {kpi.kpi_list[5]} from {n} where lac = '{cell.lac}' and ci = '{cell.cell_id}' and datetime between '{kpi.start_date}' and '{kpi.end_date}'"
+
+        cursor.execute(query)
+        result_set = cursor.fetchall()
+        return result_set
+        cursor.close()
+
+    def get_data_for_graphic7(self, cell, kpi, n):
+
+        cursor, result_list = self.db_conn()
+
+        for kpi_item in range(len(kpi.kpi_list)):
+            query = f"select datetime, {kpi.kpi_list[6]} from {n} where lac = '{cell.lac}' and ci = '{cell.cell_id}' and datetime between '{kpi.start_date}' and '{kpi.end_date}'"
+
+        cursor.execute(query)
+        result_set = cursor.fetchall()
+        return result_set
+        cursor.close()
+
+    def get_data_for_graphic8(self, cell, kpi, n):
+
+        cursor, result_list = self.db_conn()
+
+        for kpi_item in range(len(kpi.kpi_list)):
+            query = f"select datetime, {kpi.kpi_list[7]} from {n} where lac = '{cell.lac}' and ci = '{cell.cell_id}' and datetime between '{kpi.start_date}' and '{kpi.end_date}'"
+
+        cursor.execute(query)
+        result_set = cursor.fetchall()
         return result_set
         cursor.close()
