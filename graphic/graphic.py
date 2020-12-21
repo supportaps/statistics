@@ -1,3 +1,5 @@
+import tk
+from matplotlib.backends._backend_tk import NavigationToolbar2Tk
 from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg)
 from matplotlib.figure import Figure
@@ -6,17 +8,24 @@ import datetime
 from tkinter import ttk
 import matplotlib.pyplot as plt
 
+from gui.scroll import Scroll
+
 
 class Graphic:
 
     def __init__(self, frame):
         self.x = []
         self.y = []
+        self.frame = frame
+        self.fig1 = Figure(frameon=self.frame)
 
-        self.fig1 = Figure()
+        self.fig1.set_size_inches(10,10)
+
+
 
         self.ax1 = self.fig1.add_subplot(811)
         self.ax1.plot(1, 1)
+
         self.ax2 = self.fig1.add_subplot(812)
         self.ax2.plot(2.2, 2)
         self.ax3 = self.fig1.add_subplot(813)
@@ -33,10 +42,30 @@ class Graphic:
         self.ax8.plot(2.2, 2)
 
 
-
-        self.canvas1 = FigureCanvasTkAgg(self.fig1, frame)
+        self.canvas1 = FigureCanvasTkAgg(self.fig1, master=self.frame)
         self.canvas1.draw()
-        self.canvas1.get_tk_widget().pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=0)
+        self.canvas1.get_tk_widget().pack(side='left', fill='y', expand=1)
+
+        vertical_scroll = Scroll(self.canvas1, self.frame)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -49,8 +78,12 @@ class Graphic:
             for d in item:
                 if type(d) == datetime.datetime:
                     self.x.append(d)
-                elif type(d) == float or type(d) == int:
-                    self.y.append(d)
+                elif type(d) == float or type(d) == int or type(d) is None:
+                    if type(d) is None:
+                        self.y == 0
+                        self.y.append(d)
+                    else:
+                        self.y.append(d)
 
         self.ax1.clear()
         self.ax1.plot(self.x, self.y)
@@ -66,8 +99,12 @@ class Graphic:
             for d in item:
                 if type(d) == datetime.datetime:
                     self.x.append(d)
-                elif type(d) == float or type(d) == int:
-                    self.y.append(d)
+                elif type(d) == float or type(d) == int or type(d) is None:
+                    if type(d) is None:
+                        self.y == 0
+                        self.y.append(d)
+                    else:
+                        self.y.append(d)
 
         self.ax2.clear()
         self.ax2.plot(self.x, self.y)
@@ -82,8 +119,12 @@ class Graphic:
             for d in item:
                 if type(d) == datetime.datetime:
                     self.x.append(d)
-                elif type(d) == float or type(d) == int:
-                    self.y.append(d)
+                elif type(d) == float or type(d) == int or type(d) is None:
+                    if type(d) is None:
+                        self.y == 0
+                        self.y.append(d)
+                    else:
+                        self.y.append(d)
 
         self.ax3.clear()
         self.ax3.plot(self.x, self.y)
@@ -98,8 +139,12 @@ class Graphic:
             for d in item:
                 if type(d) == datetime.datetime:
                     self.x.append(d)
-                elif type(d) == float or type(d) == int:
-                    self.y.append(d)
+                elif type(d) == float or type(d) == int or type(d) is None:
+                    if type(d) is None:
+                        self.y == 0
+                        self.y.append(d)
+                    else:
+                        self.y.append(d)
 
         self.ax4.clear()
         self.ax4.plot(self.x, self.y)
@@ -114,8 +159,12 @@ class Graphic:
             for d in item:
                 if type(d) == datetime.datetime:
                     self.x.append(d)
-                elif type(d) == float or type(d) == int:
-                    self.y.append(d)
+                elif type(d) == float or type(d) == int or type(d) is None:
+                    if type(d) is None:
+                        self.y == 0
+                        self.y.append(d)
+                    else:
+                        self.y.append(d)
 
         self.ax5.clear()
         self.ax5.plot(self.x, self.y)
@@ -130,8 +179,12 @@ class Graphic:
             for d in item:
                 if type(d) == datetime.datetime:
                     self.x.append(d)
-                elif type(d) == float or type(d) == int:
-                    self.y.append(d)
+                elif type(d) == float or type(d) == int or type(d) is None:
+                    if type(d) is None:
+                        self.y == 0
+                        self.y.append(d)
+                    else:
+                        self.y.append(d)
 
         self.ax6.clear()
         self.ax6.plot(self.x, self.y)
@@ -146,8 +199,12 @@ class Graphic:
             for d in item:
                 if type(d) == datetime.datetime:
                     self.x.append(d)
-                elif type(d) == float or type(d) == int:
-                    self.y.append(d)
+                elif type(d) == float or type(d) == int or type(d) is None:
+                    if type(d) is None:
+                        self.y == 0
+                        self.y.append(d)
+                    else:
+                        self.y.append(d)
 
         self.ax7.clear()
         self.ax7.plot(self.x, self.y)
@@ -162,8 +219,12 @@ class Graphic:
             for d in item:
                 if type(d) == datetime.datetime:
                     self.x.append(d)
-                elif type(d) == float or type(d) == int:
-                    self.y.append(d)
+                elif type(d) == float or type(d) == int or type(d) is None:
+                    if type(d) is None:
+                        self.y == 0
+                        self.y.append(d)
+                    else:
+                        self.y.append(d)
 
         self.ax8.clear()
         self.ax8.plot(self.x, self.y)

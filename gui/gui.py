@@ -34,7 +34,10 @@ class Gui:
         self.main_window.wm_title("Statistics")
 
         self.input_data_fr = tkinter.Frame(self.main_window, relief='raised', borderwidth=1, background="misty rose")
-        self.input_data_fr.pack(side='left', fill='y')
+        self.input_data_fr.pack(side='left', fill='y',expand=0)
+
+        self.output_data_present = tkinter.Frame(self.main_window)
+        self.output_data_present.pack(side='left', fill='y',expand=0)
 
         self.cal_start_lab = tkinter.Label(self.input_data_fr, text='Choose date').pack(side='top', padx=10, pady=10)
         self.cal_start_chosen_date_var = tkinter.StringVar()
@@ -138,8 +141,13 @@ class Gui:
         self.cb_items.append(self.cb7)
         self.cb_items.append(self.cb8)
 
+
+
         #graph1 = self.graphic.draw_plot(self.main_window)
-        self.graphic = Graphic(self.main_window)
+        self.graphic = Graphic(self.output_data_present)
+
+
+
 
         self.main_window.mainloop()
 
