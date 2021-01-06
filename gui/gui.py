@@ -1,8 +1,9 @@
 import tkinter
 import datetime
 from tkinter import ttk
-
 from tkcalendar import DateEntry, Calendar
+
+
 
 from controller.backend import GetKpi
 from graphic.graphic import Graphic
@@ -33,11 +34,19 @@ class Gui:
 
         self.main_window.wm_title("Statistics")
 
+
+
         self.input_data_fr = tkinter.Frame(self.main_window, relief='raised', borderwidth=1, background="misty rose")
         self.input_data_fr.pack(side='left', fill='y',expand=0)
 
-        self.output_data_present = tkinter.Frame(self.main_window)
-        self.output_data_present.pack(side='left', fill='y',expand=0)
+        self.output_data_present1 = tkinter.Frame(self.main_window)
+        self.output_data_present1.pack(side='left', fill='y', expand=0)
+        self.output_data_present2 = tkinter.Frame(self.main_window, relief='raised')
+        self.output_data_present2.pack(side='left', fill='y', expand=0)
+
+
+
+
 
         self.cal_start_lab = tkinter.Label(self.input_data_fr, text='Choose date').pack(side='top', padx=10, pady=10)
         self.cal_start_chosen_date_var = tkinter.StringVar()
@@ -144,7 +153,7 @@ class Gui:
 
 
         #graph1 = self.graphic.draw_plot(self.main_window)
-        self.graphic = Graphic(self.output_data_present)
+        self.graphic = Graphic(self.output_data_present1)
 
 
 
@@ -249,5 +258,6 @@ class Gui:
         self.graphic.update_plot_graphik6(result_for_graphic6)
         self.graphic.update_plot_graphik7(result_for_graphic7)
         self.graphic.update_plot_graphik8(result_for_graphic8)
+
 
 
