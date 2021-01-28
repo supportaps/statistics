@@ -33,7 +33,7 @@ class Graphic:
         mpl.rcParams['figure.raise_window'] = False
         mpl.rcParams['figure.frameon'] = True
         mpl.rcParams['figure.dpi'] = 80
-        mpl.rcParams['figure.figsize'] = [12.8, 10.2]
+        mpl.rcParams['figure.figsize'] = [13, 40]
         mpl.rcParams['figure.edgecolor'] = 'blue'
         mpl.rcParams['figure.facecolor'] = '#ffe7e7'
 
@@ -44,36 +44,35 @@ class Graphic:
 
 
 
-        self.ax1 = self.fig1.add_subplot(4, 2, 1)
+        self.ax1 = self.fig1.add_subplot(8, 1, 1)
         self.ax1.scatter(10, 10)
 
-        self.ax2 = self.fig1.add_subplot(4, 2, 2)
-        self.ax2.plot(2.2, 2)
-        self.ax3 = self.fig1.add_subplot(423)
+        self.ax2 = self.fig1.add_subplot(8, 1, 2)
+        self.ax2.plot(2.2, 2,alpha=0.5)
+        self.ax3 = self.fig1.add_subplot(813)
         self.ax3.plot(2.2, 2)
-        self.ax4 = self.fig1.add_subplot(424)
+        self.ax4 = self.fig1.add_subplot(814)
         self.ax4.plot(2.2, 2)
-        self.ax5 = self.fig1.add_subplot(425)
+        self.ax5 = self.fig1.add_subplot(815)
         self.ax5.plot(1, 1)
-        self.ax6 = self.fig1.add_subplot(426)
+        self.ax6 = self.fig1.add_subplot(816)
         self.ax6.plot(2.2, 2)
-        self.ax7 = self.fig1.add_subplot(427)
+        self.ax7 = self.fig1.add_subplot(817)
         self.ax7.plot(2.2, 2)
-        self.ax8 = self.fig1.add_subplot(428)
+        self.ax8 = self.fig1.add_subplot(818)
         self.ax8.plot(2.2, 2)
 
-        #mpl.rcParams['figure.raise_window'] = True
-        #mpl.rcParams['figure.frameon'] = False
-        #mpl.rcParams['figure.dpi'] = 50
-        #mpl.rcParams['figure.figsize'] = [14, 6]
+
 
         self.fig1.tight_layout()
 
-        self.canvas1 = FigureCanvasTkAgg(self.fig1, master=self.frame1)
+        self.canvas1 = FigureCanvasTkAgg(self.fig1, master=self.frame1,)
+        self.canvas1.get_tk_widget().itemconfigure(self.fig1, width=300, height=300 )
 
         self.canvas1.draw()
         self.canvas1.get_tk_widget().pack(side='left', expand=False)
 
+        self.canvas1.get_tk_widget().bind("<Configure>", self.canvas_dimen)
         self.canvas1.get_tk_widget().update_idletasks()
 
 
@@ -157,7 +156,9 @@ class Graphic:
 
 
 
-
+    def canvas_dimen(self, event):
+        canvas_width = event.width
+        print("canvas_width: ",canvas_width)
 
 
 
@@ -173,7 +174,7 @@ class Graphic:
 
         self.fig1.tight_layout()
         self.fig1.set_dpi(80)
-        self.fig1.set_size_inches(12.8, 10.2)
+        self.fig1.set_size_inches(13, 40)
         fig_weight = self.fig1.get_figwidth()
         fig_height = self.fig1.get_figheight()
         dpi = self.fig1.get_dpi()

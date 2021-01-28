@@ -20,6 +20,16 @@ class Config:
         self.config.read('settings.ini')
         return self.config['query_graphic']['test_query']
 
+    def query_graphic_2g_3g(self):
+        self.config.read('settings.ini')
+        return self.config['query_graphic_2g_3g']['query']
+
+    def query_graphic_4g(self):
+        self.config.read('settings.ini')
+        return self.config['query_graphic_4g']['query']
+
+
+
     def query_head_2gh(self):
         self.config.read('settings.ini')
         return self.config['query_2g_h']['col_query_2g_h']
@@ -67,5 +77,26 @@ class Config:
     def n6(self):
         self.config.read('settings.ini')
         return self.config['name6']['4gd']
+
+    def c1(self):
+        self.config.read('settings.ini')
+        return self.config['col1']['c1']
+
+    def c2(self):
+        self.config.read('settings.ini')
+        return self.config['col2']['c2']
+
+    def un2(self):
+        self.config.read('settings.ini')
+        return self.config['unique1']['un2']
+
+    def un3(self):
+        self.config.read('settings.ini')
+        return self.config['unique2']['un3']
+
+    def un4(self):
+        self.config.read('settings.ini')
+        return self.config['unique3']['un4']
+
 
 

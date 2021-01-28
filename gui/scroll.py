@@ -47,7 +47,7 @@ class Scroll:
 
         self.fig.tight_layout()
         self.fig.set_dpi(80)
-        self.fig.set_size_inches(12.8, 10.2)
+        self.fig.set_size_inches(13, 40)
         fig_weight = self.fig.get_figwidth()
         fig_height = self.fig.get_figheight()
         dpi = self.fig.get_dpi()
