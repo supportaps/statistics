@@ -19,6 +19,7 @@ class Gui:
         self.chosen_column = []
         self.chosen_column_cell_identity = []
         self.concatenated_chars = ''
+        self.unique_result = []
 
         self.column_2gh = self.kpi_data.get_columns_2g_h()
         self.column_2gd = self.kpi_data.get_columns_2g_d()
@@ -112,7 +113,7 @@ class Gui:
         self.input_cell_ci_cb.pack(side='top', padx=5, pady=5)
 
         self.lac_ci_bt = tkinter.Button(self.input_data_fr,
-                                        text='OK', command=self.get_data_for_graphics)
+                                        text='OK', command=self.get_data_for_graphics_by_lac_ci)
         self.lac_ci_bt.pack(side='top')
 
         self.kpi_chosen1 = tkinter.StringVar()
@@ -207,7 +208,7 @@ class Gui:
             #cb.bind("<FocusOut>", self.get_input_string)
         self.input_cell_name_cb.bind("<KeyPress>", self.create_kpilist_by_input_str)
         self.input_lac_tac_cb.bind("<KeyPress>", self.create_kpilist_by_input_str)
-        self.input_cell_ci_cb.bind("<KeyPress>", self.create_kpilist_by_input_str) #CHECK WHAT CONFIGURED??????? AND PROCEED WITH NEXT FUNCTION
+        self.input_cell_ci_cb.bind("<KeyPress>", self.create_kpilist_by_input_str)
 
     def create_kpilist_by_input_str(self, event):
         print("EVENT: ",event)
@@ -360,7 +361,7 @@ class Gui:
 
                     cell_name.add('None None None')
                 else:
-                    #print(identities[item][2],'^',identities[item][3],'^',identities[item][4])
+
                     cell_name.add(identities[item][2]+identities[item][3]+identities[item][4])
 
         return lac, cell_id, cell_name
@@ -373,6 +374,7 @@ class Gui:
 
         if rb_tech == 1 and rb_period == 1:
             lac_list, cell_id_list, cell_name_list = self.get_cell_identity(self.unique2)
+            self.unique_result = self.unique2
             self.input_cell_name_cb.configure(values=list(cell_name_list))
             self.input_lac_tac_cb.configure(values=list(lac_list))
             self.input_cell_ci_cb.configure(values=list(cell_id_list))
@@ -394,6 +396,7 @@ class Gui:
                 return self.n1
         elif rb_tech == 1 and rb_period == 2:
             lac_list, cell_id_list, cell_name_list = self.get_cell_identity(self.unique2)
+            self.unique_result = self.unique2
             self.input_cell_name_cb.configure(values=list(cell_name_list))
             self.input_lac_tac_cb.configure(values=list(lac_list))
             self.input_cell_ci_cb.configure(values=list(cell_id_list))
@@ -412,6 +415,7 @@ class Gui:
                 return self.n2
         elif rb_tech == 2 and rb_period == 1:
             lac_list, cell_id_list, cell_name_list = self.get_cell_identity(self.unique3)
+            self.unique_result = self.unique3
             self.input_cell_name_cb.configure(values=list(cell_name_list))
             self.input_lac_tac_cb.configure(values=list(lac_list))
             self.input_cell_ci_cb.configure(values=list(cell_id_list))
@@ -430,6 +434,7 @@ class Gui:
                 return self.n3
         elif rb_tech == 2 and rb_period == 2:
             lac_list, cell_id_list, cell_name_list = self.get_cell_identity(self.unique3)
+            self.unique_result = self.unique3
             self.input_cell_name_cb.configure(values=list(cell_name_list))
             self.input_lac_tac_cb.configure(values=list(lac_list))
             self.input_cell_ci_cb.configure(values=list(cell_id_list))
@@ -448,6 +453,7 @@ class Gui:
                 return self.n4
         elif rb_tech == 3 and rb_period == 1:
             lac_list, cell_id_list, cell_name_list = self.get_cell_identity(self.unique4)
+            self.unique_result = self.unique4
             self.input_cell_name_cb.configure(values=list(cell_name_list))
             self.input_lac_tac_cb.configure(values=list(lac_list))
             self.input_cell_ci_cb.configure(values=list(cell_id_list))
@@ -467,6 +473,7 @@ class Gui:
                 return self.n5
         elif rb_tech == 3 and rb_period == 2:
             lac_list, cell_id_list, cell_name_list = self.get_cell_identity(self.unique4)
+            self.unique_result = self.unique4
             self.input_cell_name_cb.configure(values=list(cell_name_list))
             self.input_lac_tac_cb.configure(values=list(lac_list))
             self.input_cell_ci_cb.configure(values=list(cell_id_list))
@@ -524,9 +531,52 @@ class Gui:
         kpi.append(self.kpi_chosen8.get())
         return kpi
 
-    def get_data_for_graphics(self):
+    def get_results_from_source(self, cell):
+        kpi_item = Kpi(self.get_kpi_columns(), self.cal_start_chosen_date_var.get(), self.cal_end_chosen_date_var.get())
+        n = self.get_name()
 
-        cell = Cell('', self.get_ci(), self.get_lac_tac())
+        print("DATE COLUMN NAME: ", self.date_column_name)
+
+        result_for_graphic1 = self.kpi_data.get_data_for_graphic1(cell, kpi_item, n, self.date_column_name)
+        result_for_graphic2 = self.kpi_data.get_data_for_graphic2(cell, kpi_item, n, self.date_column_name)
+        result_for_graphic3 = self.kpi_data.get_data_for_graphic3(cell, kpi_item, n, self.date_column_name)
+        result_for_graphic4 = self.kpi_data.get_data_for_graphic4(cell, kpi_item, n, self.date_column_name)
+        result_for_graphic5 = self.kpi_data.get_data_for_graphic5(cell, kpi_item, n, self.date_column_name)
+        result_for_graphic6 = self.kpi_data.get_data_for_graphic6(cell, kpi_item, n, self.date_column_name)
+        result_for_graphic7 = self.kpi_data.get_data_for_graphic7(cell, kpi_item, n, self.date_column_name)
+        result_for_graphic8 = self.kpi_data.get_data_for_graphic8(cell, kpi_item, n, self.date_column_name)
+
+        return result_for_graphic1,result_for_graphic2,result_for_graphic3,result_for_graphic4,result_for_graphic5,result_for_graphic6,result_for_graphic7,result_for_graphic8
+
+    def update_plots(self):
+        res1,res2,res3,res4,res5,res6,res7,res8 = self.get_results_from_source()
+        self.graphic.update_plot_graphik1(res1)
+        self.graphic.update_plot_graphik2(res2)
+        self.graphic.update_plot_graphik3(res3)
+        self.graphic.update_plot_graphik4(res4)
+        self.graphic.update_plot_graphik5(res5)
+        self.graphic.update_plot_graphik6(res6)
+        self.graphic.update_plot_graphik7(res7)
+        self.graphic.update_plot_graphik8(res8)
+
+    def get_data_for_graphics_by_cell_name(self):
+        found_name = ''
+        found_lac = ''
+        found_ci = ''
+        for _ in range(len(self.unique_result)):
+            if None not in self.unique_result[_]:
+                cn =  self.unique_result[_][2] + self.unique_result[_][3] + self.unique_result[_][4]
+                if cn == self.get_cell_name_from_ent():
+                    found_name = self.unique_result[_][2] + self.unique_result[_][3] + self.unique_result[_][4]
+                    found_lac = self.unique_result[_][0]
+                    found_ci =  self.unique_result[_][1]
+
+        cell = Cell(found_name, found_ci, found_lac)
+
+    def get_data_for_graphics_by_lac_ci(self):
+
+        cell = Cell(self.get_cell_name_from_ent(), self.get_ci(), self.get_lac_tac())
+
         kpi_item = Kpi(self.get_kpi_columns(), self.cal_start_chosen_date_var.get(), self.cal_end_chosen_date_var.get())
         n = self.get_name()
 

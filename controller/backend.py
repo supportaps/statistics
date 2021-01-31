@@ -10,8 +10,6 @@ class GetKpi:
         self.q_2_3 = self.config.query_graphic_2g_3g()
         self.q4 = self.config.query_graphic_4g()
 
-
-
     def conn_driver(self):
         config = Config()
         config_data = config.config_dsn()
@@ -23,7 +21,6 @@ class GetKpi:
     def oracle_db_conn(self):
         config = Config()
         config_data = config.config_dsn()
-
 
         dsn = cx_Oracle.makedsn(config_data[1], config_data[2], service_name=config_data[3])
         config_connection = config.config_connect()
@@ -40,8 +37,6 @@ class GetKpi:
         print(result_list)
         return result_list
         cursor.close()
-
-
 
     def db_conn(self):
         config_data = self.config.config_dsn()
@@ -119,25 +114,15 @@ class GetKpi:
         return result_set
         cursor.close()
 
-
-
-
     def get_data_for_graphic1(self, cell, kpi, n, date_column_name):
-        print(n)
         cursor, result_list = self.db_conn()
-
-        #for kpi_item in range(len(kpi.kpi_list)):
-        q = self.config.query_graphic_2g_3g()
+        query = ''
         length = len(cell.cell_id)
-        print("CELLID1",cell.cell_id[0:length-2])
-        print("CELLID2", cell.cell_id[-2:])
 
-        if 'LTE' or '4G' in n:
+        if "4g" in n or "lte" in n:
             query = self.q4[:7] + date_column_name + ', ' + kpi.kpi_list[0] + self.q4[40:46] + n + self.q4[47:60] + "'" + cell.lac + "'" + self.q4[70:86] + "'" + cell.cell_id[0:length-2] + "'" + self.q4[100:114]+ "'" + cell.cell_id[-2:] + "'" + self.q4[128:133] + date_column_name + self.q4[149:158] + "'" + kpi.start_date + "'" + self.q4[174:179] + "'" + kpi.end_date + "'"
-            print(query)
-        elif '2G' or '3G' or 'UDAILY' in n:
+        elif "2g" in n or "3g" in n or "udaily" in n:
             query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[0] + self.q_2_3[40:46] + n + self.q_2_3[47:60] + "'" + cell.lac + "'" + self.q_2_3[70:80] + "'" + cell.cell_id + "'" + self.q_2_3[94:99] + date_column_name + self.q_2_3[115:124] + "'" + kpi.start_date + "'" + self.q_2_3[140:145] + "'" + kpi.end_date + "'"
-            print(query)
 
         cursor.execute(query)
         result_set = cursor.fetchall()
@@ -145,12 +130,13 @@ class GetKpi:
         cursor.close()
 
     def get_data_for_graphic2(self, cell, kpi, n, date_column_name):
+        query = ''
         length = len(cell.cell_id)
         cursor, result_list = self.db_conn()
-        if 'LTE' or '4G' in n:
-            query = self.q4[:7] + date_column_name + ', ' + kpi.kpi_list[1] + self.q4[40:46] + n + self.q4[47:60] + "'" + cell.lac + "'" + self.q4[70:86] + "'" + cell.cell_id[0:length-2] + "'" + self.q4[100:114]+ "'" + cell.cell_id[-2:] + "'" + self.q4[128:133] + date_column_name + self.q4[149:158] + "'" + kpi.start_date + "'" + self.q4[174:179] + "'" + kpi.end_date + "'"
 
-        elif '2G' or '3G' or 'UDAILY' in n:
+        if "4g" in n or "lte" in n:
+            query = self.q4[:7] + date_column_name + ', ' + kpi.kpi_list[1] + self.q4[40:46] + n + self.q4[47:60] + "'" + cell.lac + "'" + self.q4[70:86] + "'" + cell.cell_id[0:length-2] + "'" + self.q4[100:114]+ "'" + cell.cell_id[-2:] + "'" + self.q4[128:133] + date_column_name + self.q4[149:158] + "'" + kpi.start_date + "'" + self.q4[174:179] + "'" + kpi.end_date + "'"
+        elif "2g" in n or "3g" in n or "udaily" in n:
             query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[1] + self.q_2_3[40:46] + n + self.q_2_3[47:60] + "'" + cell.lac + "'" + self.q_2_3[70:80] + "'" + cell.cell_id + "'" + self.q_2_3[94:99] + date_column_name + self.q_2_3[115:124] + "'" + kpi.start_date + "'" + self.q_2_3[140:145] + "'" + kpi.end_date + "'"
 
         cursor.execute(query)
@@ -159,12 +145,13 @@ class GetKpi:
         cursor.close()
 
     def get_data_for_graphic3(self, cell, kpi, n, date_column_name):
+        query = ''
         length = len(cell.cell_id)
         cursor, result_list = self.db_conn()
-        if 'LTE' or '4G' in n:
-            query = self.q4[:7] + date_column_name + ', ' + kpi.kpi_list[2] + self.q4[40:46] + n + self.q4[47:60] + "'" + cell.lac + "'" + self.q4[70:86] + "'" + cell.cell_id[0:length-2] + "'" + self.q4[100:114]+ "'" + cell.cell_id[-2:] + "'" + self.q4[128:133] + date_column_name + self.q4[149:158] + "'" + kpi.start_date + "'" + self.q4[174:179] + "'" + kpi.end_date + "'"
 
-        elif '2G' or '3G' or 'UDAILY' in n:
+        if "4g" in n or "lte" in n:
+            query = self.q4[:7] + date_column_name + ', ' + kpi.kpi_list[2] + self.q4[40:46] + n + self.q4[47:60] + "'" + cell.lac + "'" + self.q4[70:86] + "'" + cell.cell_id[0:length-2] + "'" + self.q4[100:114]+ "'" + cell.cell_id[-2:] + "'" + self.q4[128:133] + date_column_name + self.q4[149:158] + "'" + kpi.start_date + "'" + self.q4[174:179] + "'" + kpi.end_date + "'"
+        elif "2g" in n or "3g" in n or "udaily" in n:
             query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[2] + self.q_2_3[40:46] + n + self.q_2_3[47:60] + "'" + cell.lac + "'" + self.q_2_3[70:80] + "'" + cell.cell_id + "'" + self.q_2_3[94:99] + date_column_name + self.q_2_3[115:124] + "'" + kpi.start_date + "'" + self.q_2_3[140:145] + "'" + kpi.end_date + "'"
 
         cursor.execute(query)
@@ -173,70 +160,79 @@ class GetKpi:
         cursor.close()
 
     def get_data_for_graphic4(self, cell, kpi, n, date_column_name):
+        query = ''
         length = len(cell.cell_id)
         cursor, result_list = self.db_conn()
-        if 'LTE' or '4G' in n:
-            query = self.q4[:7] + date_column_name + ', ' + kpi.kpi_list[3] + self.q4[40:46] + n + self.q4[47:60] + "'" + cell.lac + "'" + self.q4[70:86] + "'" + cell.cell_id[0:length-2] + "'" + self.q4[100:114]+ "'" + cell.cell_id[-2:] + "'" + self.q4[128:133] + date_column_name + self.q4[149:158] + "'" + kpi.start_date + "'" + self.q4[174:179] + "'" + kpi.end_date + "'"
 
-        elif '2G' or '3G' or 'UDAILY' in n:
+        if "4g" in n or "lte" in n:
+            query = self.q4[:7] + date_column_name + ', ' + kpi.kpi_list[3] + self.q4[40:46] + n + self.q4[47:60] + "'" + cell.lac + "'" + self.q4[70:86] + "'" + cell.cell_id[0:length-2] + "'" + self.q4[100:114]+ "'" + cell.cell_id[-2:] + "'" + self.q4[128:133] + date_column_name + self.q4[149:158] + "'" + kpi.start_date + "'" + self.q4[174:179] + "'" + kpi.end_date + "'"
+        elif "2g" in n or "3g" in n or "udaily" in n:
             query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[3] + self.q_2_3[40:46] + n + self.q_2_3[47:60] + "'" + cell.lac + "'" + self.q_2_3[70:80] + "'" + cell.cell_id + "'" + self.q_2_3[94:99] + date_column_name + self.q_2_3[115:124] + "'" + kpi.start_date + "'" + self.q_2_3[140:145] + "'" + kpi.end_date + "'"
+
         cursor.execute(query)
         result_set = cursor.fetchall()
         return result_set
         cursor.close()
 
     def get_data_for_graphic5(self, cell, kpi, n, date_column_name):
+        query = ''
         length = len(cell.cell_id)
         cursor, result_list = self.db_conn()
-        if 'LTE' or '4G' in n:
-            query = self.q4[:7] + date_column_name + ', ' + kpi.kpi_list[4] + self.q4[40:46] + n + self.q4[47:60] + "'" + cell.lac + "'" + self.q4[70:86] + "'" + cell.cell_id[0:length-2] + "'" + self.q4[100:114]+ "'" + cell.cell_id[-2:] + "'" + self.q4[128:133] + date_column_name + self.q4[149:158] + "'" + kpi.start_date + "'" + self.q4[174:179] + "'" + kpi.end_date + "'"
 
-        elif '2G' or '3G' or 'UDAILY' in n:
+        if "4g" in n or "lte" in n:
+            query = self.q4[:7] + date_column_name + ', ' + kpi.kpi_list[4] + self.q4[40:46] + n + self.q4[47:60] + "'" + cell.lac + "'" + self.q4[70:86] + "'" + cell.cell_id[0:length-2] + "'" + self.q4[100:114]+ "'" + cell.cell_id[-2:] + "'" + self.q4[128:133] + date_column_name + self.q4[149:158] + "'" + kpi.start_date + "'" + self.q4[174:179] + "'" + kpi.end_date + "'"
+        elif "2g" in n or "3g" in n or "udaily" in n:
             query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[4] + self.q_2_3[40:46] + n + self.q_2_3[47:60] + "'" + cell.lac + "'" + self.q_2_3[70:80] + "'" + cell.cell_id + "'" + self.q_2_3[94:99] + date_column_name + self.q_2_3[115:124] + "'" + kpi.start_date + "'" + self.q_2_3[140:145] + "'" + kpi.end_date + "'"
+
         cursor.execute(query)
         result_set = cursor.fetchall()
         return result_set
         cursor.close()
 
     def get_data_for_graphic6(self, cell, kpi, n, date_column_name):
+        query = ''
         length = len(cell.cell_id)
         cursor, result_list = self.db_conn()
-        if 'LTE' or '4G' in n:
-            query = self.q4[:7] + date_column_name + ', ' + kpi.kpi_list[5] + self.q4[40:46] + n + self.q4[47:60] + "'" + cell.lac + "'" + self.q4[70:86] + "'" + cell.cell_id[0:length-2] + "'" + self.q4[100:114]+ "'" + cell.cell_id[-2:] + "'" + self.q4[128:133] + date_column_name + self.q4[149:158] + "'" + kpi.start_date + "'" + self.q4[174:179] + "'" + kpi.end_date + "'"
 
-        elif '2G' or '3G' or 'UDAILY' in n:
+        if "4g" in n or "lte" in n:
+            query = self.q4[:7] + date_column_name + ', ' + kpi.kpi_list[5] + self.q4[40:46] + n + self.q4[47:60] + "'" + cell.lac + "'" + self.q4[70:86] + "'" + cell.cell_id[0:length-2] + "'" + self.q4[100:114]+ "'" + cell.cell_id[-2:] + "'" + self.q4[128:133] + date_column_name + self.q4[149:158] + "'" + kpi.start_date + "'" + self.q4[174:179] + "'" + kpi.end_date + "'"
+        elif "2g" in n or "3g" in n or "udaily" in n:
             query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[5] + self.q_2_3[40:46] + n + self.q_2_3[47:60] + "'" + cell.lac + "'" + self.q_2_3[70:80] + "'" + cell.cell_id + "'" + self.q_2_3[94:99] + date_column_name + self.q_2_3[115:124] + "'" + kpi.start_date + "'" + self.q_2_3[140:145] + "'" + kpi.end_date + "'"
+
         cursor.execute(query)
         result_set = cursor.fetchall()
         return result_set
         cursor.close()
 
     def get_data_for_graphic7(self, cell, kpi, n, date_column_name):
+        query = ''
         length = len(cell.cell_id)
         cursor, result_list = self.db_conn()
-        if 'LTE' or '4G' in n:
-            query = self.q4[:7] + date_column_name + ', ' + kpi.kpi_list[6] + self.q4[40:46] + n + self.q4[47:60] + "'" + cell.lac + "'" + self.q4[70:86] + "'" + cell.cell_id[0:length-2] + "'" + self.q4[100:114]+ "'" + cell.cell_id[-2:] + "'" + self.q4[128:133] + date_column_name + self.q4[149:158] + "'" + kpi.start_date + "'" + self.q4[174:179] + "'" + kpi.end_date + "'"
 
-        elif '2G' or '3G' or 'UDAILY' in n:
+        if "4g" in n or "lte" in n:
+            query = self.q4[:7] + date_column_name + ', ' + kpi.kpi_list[6] + self.q4[40:46] + n + self.q4[47:60] + "'" + cell.lac + "'" + self.q4[70:86] + "'" + cell.cell_id[0:length-2] + "'" + self.q4[100:114]+ "'" + cell.cell_id[-2:] + "'" + self.q4[128:133] + date_column_name + self.q4[149:158] + "'" + kpi.start_date + "'" + self.q4[174:179] + "'" + kpi.end_date + "'"
+        elif "2g" in n or "3g" in n or "udaily" in n:
             query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[6] + self.q_2_3[40:46] + n + self.q_2_3[47:60] + "'" + cell.lac + "'" + self.q_2_3[70:80] + "'" + cell.cell_id + "'" + self.q_2_3[94:99] + date_column_name + self.q_2_3[115:124] + "'" + kpi.start_date + "'" + self.q_2_3[140:145] + "'" + kpi.end_date + "'"
+
         cursor.execute(query)
         result_set = cursor.fetchall()
         return result_set
         cursor.close()
 
     def get_data_for_graphic8(self, cell, kpi, n, date_column_name):
+        query = ''
         length = len(cell.cell_id)
         cursor, result_list = self.db_conn()
-        if 'LTE' or '4G' in n:
-            query = self.q4[:7] + date_column_name + ', ' + kpi.kpi_list[7] + self.q4[40:46] + n + self.q4[47:60] + "'" + cell.lac + "'" + self.q4[70:86] + "'" + cell.cell_id[0:length-2] + "'" + self.q4[100:114]+ "'" + cell.cell_id[-2:] + "'" + self.q4[128:133] + date_column_name + self.q4[149:158] + "'" + kpi.start_date + "'" + self.q4[174:179] + "'" + kpi.end_date + "'"
 
-        elif '2G' or '3G' or 'UDAILY' in n:
+        if "4g" in n or "lte" in n:
+            query = self.q4[:7] + date_column_name + ', ' + kpi.kpi_list[7] + self.q4[40:46] + n + self.q4[47:60] + "'" + cell.lac + "'" + self.q4[70:86] + "'" + cell.cell_id[0:length-2] + "'" + self.q4[100:114]+ "'" + cell.cell_id[-2:] + "'" + self.q4[128:133] + date_column_name + self.q4[149:158] + "'" + kpi.start_date + "'" + self.q4[174:179] + "'" + kpi.end_date + "'"
+        elif "2g" in n or "3g" in n or "udaily" in n:
             query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[7] + self.q_2_3[40:46] + n + self.q_2_3[47:60] + "'" + cell.lac + "'" + self.q_2_3[70:80] + "'" + cell.cell_id + "'" + self.q_2_3[94:99] + date_column_name + self.q_2_3[115:124] + "'" + kpi.start_date + "'" + self.q_2_3[140:145] + "'" + kpi.end_date + "'"
+
         cursor.execute(query)
         result_set = cursor.fetchall()
         return result_set
         cursor.close()
-
 
     def get_unique2(self):
         cursor, result_list = self.db_conn()
