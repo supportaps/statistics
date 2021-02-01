@@ -95,7 +95,7 @@ class Gui:
         self.input_cell_name_cb.pack(side='top', padx=5, pady=5)
 
         self.cell_name_bt = tkinter.Button(self.input_data_fr,
-                                           text='OK', command=self.get_cell_name_from_ent)
+                                           text='OK', command=self.get_data_for_graphics_by_cell_name)
         self.cell_name_bt.pack(side='top')
 
         self.input_lac_tac_lb = tkinter.Label(self.input_data_fr, text='LAC(TAC):')
@@ -548,8 +548,8 @@ class Gui:
 
         return result_for_graphic1,result_for_graphic2,result_for_graphic3,result_for_graphic4,result_for_graphic5,result_for_graphic6,result_for_graphic7,result_for_graphic8
 
-    def update_plots(self):
-        res1,res2,res3,res4,res5,res6,res7,res8 = self.get_results_from_source()
+    def update_plots(self,cell):
+        res1,res2,res3,res4,res5,res6,res7,res8 = self.get_results_from_source(cell)
         self.graphic.update_plot_graphik1(res1)
         self.graphic.update_plot_graphik2(res2)
         self.graphic.update_plot_graphik3(res3)
@@ -568,10 +568,13 @@ class Gui:
                 cn =  self.unique_result[_][2] + self.unique_result[_][3] + self.unique_result[_][4]
                 if cn == self.get_cell_name_from_ent():
                     found_name = self.unique_result[_][2] + self.unique_result[_][3] + self.unique_result[_][4]
-                    found_lac = self.unique_result[_][0]
-                    found_ci =  self.unique_result[_][1]
+                    found_lac = str(self.unique_result[_][0])
+                    found_ci =  str(self.unique_result[_][1])
 
         cell = Cell(found_name, found_ci, found_lac)
+
+        self.get_results_from_source(cell)
+        self.update_plots(cell)
 
     def get_data_for_graphics_by_lac_ci(self):
 
