@@ -20,13 +20,21 @@ class Config:
         self.config.read('settings.ini')
         return self.config['query_graphic']['test_query']
 
-    def query_graphic_2g_3g(self):
+    def query_graphic_2g_3g_daily(self):
         self.config.read('settings.ini')
-        return self.config['query_graphic_2g_3g']['query']
+        return self.config['query_graphic_2g_3g_daily']['query']
 
-    def query_graphic_4g(self):
+    def query_graphic_2g_3g_hourly(self):
         self.config.read('settings.ini')
-        return self.config['query_graphic_4g']['query']
+        return self.config['query_graphic_2g_3g_hourly']['query']
+
+    def query_graphic_4g_daily(self):
+        self.config.read('settings.ini')
+        return self.config['query_graphic_4g_daily']['query']
+
+    def query_graphic_4g_hourly(self):
+        self.config.read('settings.ini')
+        return self.config['query_graphic_4g_hourly']['query']
 
 
 
@@ -85,6 +93,10 @@ class Config:
     def c2(self):
         self.config.read('settings.ini')
         return self.config['col2']['c2']
+
+    def c3(self):
+        self.config.read('settings.ini')
+        return self.config['col3']['c3']
 
     def un2(self):
         self.config.read('settings.ini')

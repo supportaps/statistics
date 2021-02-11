@@ -16,6 +16,7 @@ class Gui:
         self.kpi_data = GetKpi()
 
         self.date_column_name = ''
+        self.hour_column_name = ''
         self.chosen_column = []
         self.chosen_column_cell_identity = []
         self.concatenated_chars = ''
@@ -42,6 +43,12 @@ class Gui:
 
         self.main_window.wm_title("Statistics")
         self.main_window.iconbitmap("vodafone_6830.ico")
+        self.height = self.main_window.winfo_height()
+        self.width = self.main_window.winfo_width()
+        self.screen = self.main_window.winfo_screendepth()
+        self.screenh = self.main_window.winfo_screenheight()
+        self.screenw = self.main_window.winfo_screenwidth()
+        print("SCREEN DATA: ",self.height,self.width,"MY SCREEN ---->",self.screen,self.screenh,self.screenw)
 
         self.input_data_fr = tkinter.Frame(self.main_window, relief='raised', borderwidth=1, background="purple")
         self.input_data_fr.pack(side='left', fill='y', expand=0)
@@ -170,6 +177,8 @@ class Gui:
                     self.date_column_name = column
                 elif column == self.kpi_data.get_c2():
                     self.date_column_name = column
+                elif column == self.kpi_data.get_c3():
+                    self.hour_column_name = column
 
     def bind_combobox(self, event):
         ev = str(event.widget)
@@ -537,27 +546,27 @@ class Gui:
 
         print("DATE COLUMN NAME: ", self.date_column_name)
 
-        result_for_graphic1 = self.kpi_data.get_data_for_graphic1(cell, kpi_item, n, self.date_column_name)
-        result_for_graphic2 = self.kpi_data.get_data_for_graphic2(cell, kpi_item, n, self.date_column_name)
-        result_for_graphic3 = self.kpi_data.get_data_for_graphic3(cell, kpi_item, n, self.date_column_name)
-        result_for_graphic4 = self.kpi_data.get_data_for_graphic4(cell, kpi_item, n, self.date_column_name)
-        result_for_graphic5 = self.kpi_data.get_data_for_graphic5(cell, kpi_item, n, self.date_column_name)
-        result_for_graphic6 = self.kpi_data.get_data_for_graphic6(cell, kpi_item, n, self.date_column_name)
-        result_for_graphic7 = self.kpi_data.get_data_for_graphic7(cell, kpi_item, n, self.date_column_name)
-        result_for_graphic8 = self.kpi_data.get_data_for_graphic8(cell, kpi_item, n, self.date_column_name)
+        result_for_graphic1 = self.kpi_data.get_data_for_graphic1(cell, kpi_item, n, self.date_column_name, self.hour_column_name)
+        result_for_graphic2 = self.kpi_data.get_data_for_graphic2(cell, kpi_item, n, self.date_column_name, self.hour_column_name)
+        result_for_graphic3 = self.kpi_data.get_data_for_graphic3(cell, kpi_item, n, self.date_column_name, self.hour_column_name)
+        result_for_graphic4 = self.kpi_data.get_data_for_graphic4(cell, kpi_item, n, self.date_column_name, self.hour_column_name)
+        result_for_graphic5 = self.kpi_data.get_data_for_graphic5(cell, kpi_item, n, self.date_column_name, self.hour_column_name)
+        result_for_graphic6 = self.kpi_data.get_data_for_graphic6(cell, kpi_item, n, self.date_column_name, self.hour_column_name)
+        result_for_graphic7 = self.kpi_data.get_data_for_graphic7(cell, kpi_item, n, self.date_column_name, self.hour_column_name)
+        result_for_graphic8 = self.kpi_data.get_data_for_graphic8(cell, kpi_item, n, self.date_column_name, self.hour_column_name)
 
-        return result_for_graphic1,result_for_graphic2,result_for_graphic3,result_for_graphic4,result_for_graphic5,result_for_graphic6,result_for_graphic7,result_for_graphic8
+        return result_for_graphic1,result_for_graphic2,result_for_graphic3,result_for_graphic4,result_for_graphic5,result_for_graphic6,result_for_graphic7,result_for_graphic8, n
 
     def update_plots(self,cell):
-        res1,res2,res3,res4,res5,res6,res7,res8 = self.get_results_from_source(cell)
-        self.graphic.update_plot_graphik1(res1)
-        self.graphic.update_plot_graphik2(res2)
-        self.graphic.update_plot_graphik3(res3)
-        self.graphic.update_plot_graphik4(res4)
-        self.graphic.update_plot_graphik5(res5)
-        self.graphic.update_plot_graphik6(res6)
-        self.graphic.update_plot_graphik7(res7)
-        self.graphic.update_plot_graphik8(res8)
+        res1,res2,res3,res4,res5,res6,res7,res8, n = self.get_results_from_source(cell)
+        self.graphic.update_plot_graphik1(res1,n)
+        self.graphic.update_plot_graphik2(res2,n)
+        self.graphic.update_plot_graphik3(res3,n)
+        self.graphic.update_plot_graphik4(res4,n)
+        self.graphic.update_plot_graphik5(res5,n)
+        self.graphic.update_plot_graphik6(res6,n)
+        self.graphic.update_plot_graphik7(res7,n)
+        self.graphic.update_plot_graphik8(res8,n)
 
     def get_data_for_graphics_by_cell_name(self):
         found_name = ''
@@ -585,20 +594,20 @@ class Gui:
 
         print("DATE COLUMN NAME: ", self.date_column_name)
 
-        result_for_graphic1 = self.kpi_data.get_data_for_graphic1(cell, kpi_item, n, self.date_column_name)
-        result_for_graphic2 = self.kpi_data.get_data_for_graphic2(cell, kpi_item, n, self.date_column_name)
-        result_for_graphic3 = self.kpi_data.get_data_for_graphic3(cell, kpi_item, n, self.date_column_name)
-        result_for_graphic4 = self.kpi_data.get_data_for_graphic4(cell, kpi_item, n, self.date_column_name)
-        result_for_graphic5 = self.kpi_data.get_data_for_graphic5(cell, kpi_item, n, self.date_column_name)
-        result_for_graphic6 = self.kpi_data.get_data_for_graphic6(cell, kpi_item, n, self.date_column_name)
-        result_for_graphic7 = self.kpi_data.get_data_for_graphic7(cell, kpi_item, n, self.date_column_name)
-        result_for_graphic8 = self.kpi_data.get_data_for_graphic8(cell, kpi_item, n, self.date_column_name)
+        result_for_graphic1 = self.kpi_data.get_data_for_graphic1(cell, kpi_item, n, self.date_column_name, self.hour_column_name)
+        result_for_graphic2 = self.kpi_data.get_data_for_graphic2(cell, kpi_item, n, self.date_column_name, self.hour_column_name)
+        result_for_graphic3 = self.kpi_data.get_data_for_graphic3(cell, kpi_item, n, self.date_column_name, self.hour_column_name)
+        result_for_graphic4 = self.kpi_data.get_data_for_graphic4(cell, kpi_item, n, self.date_column_name, self.hour_column_name)
+        result_for_graphic5 = self.kpi_data.get_data_for_graphic5(cell, kpi_item, n, self.date_column_name, self.hour_column_name)
+        result_for_graphic6 = self.kpi_data.get_data_for_graphic6(cell, kpi_item, n, self.date_column_name, self.hour_column_name)
+        result_for_graphic7 = self.kpi_data.get_data_for_graphic7(cell, kpi_item, n, self.date_column_name, self.hour_column_name)
+        result_for_graphic8 = self.kpi_data.get_data_for_graphic8(cell, kpi_item, n, self.date_column_name, self.hour_column_name)
 
-        self.graphic.update_plot_graphik1(result_for_graphic1)
-        self.graphic.update_plot_graphik2(result_for_graphic2)
-        self.graphic.update_plot_graphik3(result_for_graphic3)
-        self.graphic.update_plot_graphik4(result_for_graphic4)
-        self.graphic.update_plot_graphik5(result_for_graphic5)
-        self.graphic.update_plot_graphik6(result_for_graphic6)
-        self.graphic.update_plot_graphik7(result_for_graphic7)
-        self.graphic.update_plot_graphik8(result_for_graphic8)
+        self.graphic.update_plot_graphik1(result_for_graphic1, n)
+        self.graphic.update_plot_graphik2(result_for_graphic2, n)
+        self.graphic.update_plot_graphik3(result_for_graphic3, n)
+        self.graphic.update_plot_graphik4(result_for_graphic4, n)
+        self.graphic.update_plot_graphik5(result_for_graphic5, n)
+        self.graphic.update_plot_graphik6(result_for_graphic6, n)
+        self.graphic.update_plot_graphik7(result_for_graphic7, n)
+        self.graphic.update_plot_graphik8(result_for_graphic8, n)

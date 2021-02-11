@@ -193,162 +193,234 @@ class Graphic:
 
 
 
-
-    def update_plot_graphik1(self, result_data_graphic):
+    def update_plot_graphik1(self, result_data_graphic, n):
         print(result_data_graphic)
         self.x.clear()
         self.y.clear()
-        for item in result_data_graphic:
-            for d in item:
-                if type(d) == datetime.datetime:
-                    self.x.append(d)
-                elif type(d) == float or type(d) == int or type(d) is None:
-                    if type(d) is None:
-                        self.y == 0
-                        self.y.append(d)
-                    else:
-                        self.y.append(d)
 
+        for item in range(len(result_data_graphic)):
+            if 'hourly' in n:
+                date_point = result_data_graphic[item][0]
+                hour = result_data_graphic[item][1]
+                y_value = result_data_graphic[item][2]
+                date_point = date_point.replace(hour=hour)
+            else:
+                date_point = result_data_graphic[item][0]
+                y_value = result_data_graphic[item][1]
+            print(date_point,'\n', y_value)
+
+            self.x.append(date_point)
+            if y_value is None:
+
+                self.y.append(0)
+            else:
+                print(y_value)
+                self.y.append(y_value)
+
+        print(self.x, "\n", self.y)
         self.ax1.clear()
         self.ax1.scatter(self.x, self.y, color='red')
         self.canvas1.flush_events()
         self.canvas1.draw()
 
 
-    def update_plot_graphik2(self, result_data_graphic):
+    def update_plot_graphik2(self, result_data_graphic, n):
         print(result_data_graphic)
         self.x.clear()
         self.y.clear()
-        for item in result_data_graphic:
-            for d in item:
-                if type(d) == datetime.datetime:
-                    self.x.append(d)
-                elif type(d) == float or type(d) == int or type(d) is None:
-                    if type(d) is None:
-                        self.y == 0
-                        self.y.append(d)
-                    else:
-                        self.y.append(d)
+
+        for item in range(len(result_data_graphic)):
+            if 'hourly' in n:
+                date_point = result_data_graphic[item][0]
+                hour = result_data_graphic[item][1]
+                y_value = result_data_graphic[item][2]
+                date_point = date_point.replace(hour=hour)
+            else:
+                date_point = result_data_graphic[item][0]
+                y_value = result_data_graphic[item][1]
+            print(date_point, '\n', y_value)
+
+            self.x.append(date_point)
+            if y_value is None:
+
+                self.y.append(0)
+            else:
+                print(y_value)
+                self.y.append(y_value)
 
         self.ax2.clear()
         self.ax2.plot(self.x, self.y, color='red', marker='o')
         self.canvas1.flush_events()
         self.canvas1.draw()
 
-    def update_plot_graphik3(self, result_data_graphic):
+    def update_plot_graphik3(self, result_data_graphic, n):
         print(result_data_graphic)
         self.x.clear()
         self.y.clear()
-        for item in result_data_graphic:
-            for d in item:
-                if type(d) == datetime.datetime:
-                    self.x.append(d)
-                elif type(d) == float or type(d) == int or type(d) is None:
-                    if type(d) is None:
-                        self.y == 0
-                        self.y.append(d)
-                    else:
-                        self.y.append(d)
+
+        for item in range(len(result_data_graphic)):
+            if 'hourly' in n:
+                date_point = result_data_graphic[item][0]
+                hour = result_data_graphic[item][1]
+                y_value = result_data_graphic[item][2]
+                date_point = date_point.replace(hour=hour)
+            else:
+                date_point = result_data_graphic[item][0]
+                y_value = result_data_graphic[item][1]
+            print(date_point, '\n', y_value)
+
+            self.x.append(date_point)
+            if y_value is None:
+
+                self.y.append(0)
+            else:
+                print(y_value)
+                self.y.append(y_value)
 
         self.ax3.clear()
         self.ax3.plot(self.x, self.y)
         self.canvas1.flush_events()
         self.canvas1.draw()
 
-    def update_plot_graphik4(self, result_data_graphic):
+    def update_plot_graphik4(self, result_data_graphic, n):
         print(result_data_graphic)
         self.x.clear()
         self.y.clear()
-        for item in result_data_graphic:
-            for d in item:
-                if type(d) == datetime.datetime:
-                    self.x.append(d)
-                elif type(d) == float or type(d) == int or type(d) is None:
-                    if type(d) is None:
-                        self.y == 0
-                        self.y.append(d)
-                    else:
-                        self.y.append(d)
+
+        for item in range(len(result_data_graphic)):
+            if 'hourly' in n:
+                date_point = result_data_graphic[item][0]
+                hour = result_data_graphic[item][1]
+                y_value = result_data_graphic[item][2]
+                date_point = date_point.replace(hour=hour)
+            else:
+                date_point = result_data_graphic[item][0]
+                y_value = result_data_graphic[item][1]
+            print(date_point, '\n', y_value)
+
+            self.x.append(date_point)
+            if y_value is None:
+
+                self.y.append(0)
+            else:
+                print(y_value)
+                self.y.append(y_value)
 
         self.ax4.clear()
         self.ax4.plot(self.x, self.y)
         self.canvas1.flush_events()
         self.canvas1.draw()
 
-    def update_plot_graphik5(self, result_data_graphic):
+    def update_plot_graphik5(self, result_data_graphic, n):
         print(result_data_graphic)
         self.x.clear()
         self.y.clear()
-        for item in result_data_graphic:
-            for d in item:
-                if type(d) == datetime.datetime:
-                    self.x.append(d)
-                elif type(d) == float or type(d) == int or type(d) is None:
-                    if type(d) is None:
-                        self.y == 0
-                        self.y.append(d)
-                    else:
-                        self.y.append(d)
+
+        for item in range(len(result_data_graphic)):
+            if 'hourly' in n:
+                date_point = result_data_graphic[item][0]
+                hour = result_data_graphic[item][1]
+                y_value = result_data_graphic[item][2]
+                date_point = date_point.replace(hour=hour)
+            else:
+                date_point = result_data_graphic[item][0]
+                y_value = result_data_graphic[item][1]
+            print(date_point, '\n', y_value)
+
+            self.x.append(date_point)
+            if y_value is None:
+
+                self.y.append(0)
+            else:
+                print(y_value)
+                self.y.append(y_value)
 
         self.ax5.clear()
         self.ax5.plot(self.x, self.y)
         self.canvas1.flush_events()
         self.canvas1.draw()
 
-    def update_plot_graphik6(self, result_data_graphic):
+    def update_plot_graphik6(self, result_data_graphic, n):
         print(result_data_graphic)
         self.x.clear()
         self.y.clear()
-        for item in result_data_graphic:
-            for d in item:
-                if type(d) == datetime.datetime:
-                    self.x.append(d)
-                elif type(d) == float or type(d) == int or type(d) is None:
-                    if type(d) is None:
-                        self.y == 0
-                        self.y.append(d)
-                    else:
-                        self.y.append(d)
+
+        for item in range(len(result_data_graphic)):
+            if 'hourly' in n:
+                date_point = result_data_graphic[item][0]
+                hour = result_data_graphic[item][1]
+                y_value = result_data_graphic[item][2]
+                date_point = date_point.replace(hour=hour)
+            else:
+                date_point = result_data_graphic[item][0]
+                y_value = result_data_graphic[item][1]
+            print(date_point, '\n', y_value)
+
+            self.x.append(date_point)
+            if y_value is None:
+
+                self.y.append(0)
+            else:
+                print(y_value)
+                self.y.append(y_value)
 
         self.ax6.clear()
         self.ax6.plot(self.x, self.y)
         self.canvas1.flush_events()
         self.canvas1.draw()
 
-    def update_plot_graphik7(self, result_data_graphic):
+    def update_plot_graphik7(self, result_data_graphic, n):
         print(result_data_graphic)
         self.x.clear()
         self.y.clear()
-        for item in result_data_graphic:
-            for d in item:
-                if type(d) == datetime.datetime:
-                    self.x.append(d)
-                elif type(d) == float or type(d) == int or type(d) is None:
-                    if type(d) is None:
-                        self.y == 0
-                        self.y.append(d)
-                    else:
-                        self.y.append(d)
+
+        for item in range(len(result_data_graphic)):
+            if 'hourly' in n:
+                date_point = result_data_graphic[item][0]
+                hour = result_data_graphic[item][1]
+                y_value = result_data_graphic[item][2]
+                date_point = date_point.replace(hour=hour)
+            else:
+                date_point = result_data_graphic[item][0]
+                y_value = result_data_graphic[item][1]
+            print(date_point, '\n', y_value)
+
+            self.x.append(date_point)
+            if y_value is None:
+
+                self.y.append(0)
+            else:
+                print(y_value)
+                self.y.append(y_value)
 
         self.ax7.clear()
         self.ax7.plot(self.x, self.y)
         self.canvas1.flush_events()
         self.canvas1.draw()
 
-    def update_plot_graphik8(self, result_data_graphic):
+    def update_plot_graphik8(self, result_data_graphic, n):
         print(result_data_graphic)
         self.x.clear()
         self.y.clear()
-        for item in result_data_graphic:
-            for d in item:
-                if type(d) == datetime.datetime:
-                    self.x.append(d)
-                elif type(d) == float or type(d) == int or type(d) is None:
-                    if type(d) is None:
-                        self.y == 0
-                        self.y.append(d)
-                    else:
-                        self.y.append(d)
+
+        for item in range(len(result_data_graphic)):
+            if 'hourly' in n:
+                date_point = result_data_graphic[item][0]
+                hour = result_data_graphic[item][1]
+                y_value = result_data_graphic[item][2]
+                date_point = date_point.replace(hour=hour)
+            else:
+                date_point = result_data_graphic[item][0]
+                y_value = result_data_graphic[item][1]
+            print(date_point, '\n', y_value)
+
+            self.x.append(date_point)
+            if y_value is None:
+
+                self.y.append(0)
+            else:
+                print(y_value)
+                self.y.append(y_value)
 
         self.ax8.clear()
         self.ax8.plot(self.x, self.y)
