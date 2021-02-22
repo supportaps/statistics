@@ -50,7 +50,7 @@ class Gui:
         self.screenw = self.main_window.winfo_screenwidth()
         print("SCREEN DATA: ",self.height,self.width,"MY SCREEN ---->",self.screen,self.screenh,self.screenw)
 
-        self.input_data_fr = tkinter.Frame(self.main_window, relief='raised', borderwidth=1, background="purple")
+        self.input_data_fr = tkinter.Frame(self.main_window, relief='raised', borderwidth=1, background="#6E6C6B")
         self.input_data_fr.pack(side='left', fill='y', expand=0)
 
         self.output_data_present1 = tkinter.Frame(self.main_window)
@@ -58,7 +58,7 @@ class Gui:
         self.output_data_present2 = tkinter.Frame(self.main_window, relief='raised')
         self.output_data_present2.pack(side='left', fill='y', expand=0)
 
-        self.cal_start_lab = tkinter.Label(self.input_data_fr, text='Choose date').pack(side='top', padx=10, pady=10)
+        self.cal_start_lab = tkinter.Label(self.input_data_fr, text='Choose date', background="#6E6C6B").pack(side='top', padx=10, pady=10)
         self.cal_start_chosen_date_var = tkinter.StringVar()
         self.cal_start_ent = DateEntry(self.input_data_fr, width=12, background='red',
                                        foreground='white', borderwidth=2, year=2021, calendar_cursor="hand1",
@@ -75,26 +75,26 @@ class Gui:
 
         self.var_tech = tkinter.IntVar()
         self.var_tech.set(0)
-        self.choose_tech_gsm_rb = tkinter.Radiobutton(self.input_data_fr, text='GSM', variable=self.var_tech, value=1,
+        self.choose_tech_gsm_rb = tkinter.Radiobutton(self.input_data_fr, text='GSM', background="#6E6C6B", variable=self.var_tech, value=1,
                                                       command=self.rb_tech_call)
         self.choose_tech_gsm_rb.pack(side='top')
-        self.choose_tech_wcdma_rb = tkinter.Radiobutton(self.input_data_fr, text='WCDMA', variable=self.var_tech,
+        self.choose_tech_wcdma_rb = tkinter.Radiobutton(self.input_data_fr, text='WCDMA', background="#6E6C6B", variable=self.var_tech,
                                                         value=2, command=self.rb_tech_call)
         self.choose_tech_wcdma_rb.pack(side='top')
-        self.choose_tech_lte_rb = tkinter.Radiobutton(self.input_data_fr, text='LTE', variable=self.var_tech, value=3,
+        self.choose_tech_lte_rb = tkinter.Radiobutton(self.input_data_fr, text='LTE', background="#6E6C6B", variable=self.var_tech, value=3,
                                                       command=self.rb_tech_call)
         self.choose_tech_lte_rb.pack(side='top')
 
         self.var_period = tkinter.IntVar()
         self.var_period.set(0)
-        self.choose_hourly_rb = tkinter.Radiobutton(self.input_data_fr, text='Hourly', variable=self.var_period,
+        self.choose_hourly_rb = tkinter.Radiobutton(self.input_data_fr, text='Hourly', background="#6E6C6B", variable=self.var_period,
                                                     value=1, command=self.rb_tech_call)
         self.choose_hourly_rb.pack(side='top')
-        self.choose_daily_rb = tkinter.Radiobutton(self.input_data_fr, text='Daily', variable=self.var_period, value=2,
+        self.choose_daily_rb = tkinter.Radiobutton(self.input_data_fr, text='Daily', background="#6E6C6B", variable=self.var_period, value=2,
                                                    command=self.rb_tech_call)
         self.choose_daily_rb.pack(side='top')
 
-        self.input_cell_name_lb = tkinter.Label(self.input_data_fr, text='CellName:')
+        self.input_cell_name_lb = tkinter.Label(self.input_data_fr, text='CellName:', background="#6E6C6B")
         self.input_cell_name_lb.pack(side='top')
 
         self.cell_name_chosen = tkinter.StringVar()
@@ -105,14 +105,14 @@ class Gui:
                                            text='OK', command=self.get_data_for_graphics_by_cell_name)
         self.cell_name_bt.pack(side='top')
 
-        self.input_lac_tac_lb = tkinter.Label(self.input_data_fr, text='LAC(TAC):')
+        self.input_lac_tac_lb = tkinter.Label(self.input_data_fr, text='LAC(TAC):', background="#6E6C6B")
         self.input_lac_tac_lb.pack(side='top')
 
         self.cell_lac_tac_chosen = tkinter.StringVar()
         self.input_lac_tac_cb = ttk.Combobox(self.input_data_fr, textvariable=self.cell_lac_tac_chosen)
         self.input_lac_tac_cb.pack(side='top', padx=5, pady=5)
 
-        self.input_cell_ci_lb = tkinter.Label(self.input_data_fr, text='CellId:')
+        self.input_cell_ci_lb = tkinter.Label(self.input_data_fr, text='CellId:', background="#6E6C6B")
         self.input_cell_ci_lb.pack(side='top')
 
         self.cell_id_chosen = tkinter.StringVar()

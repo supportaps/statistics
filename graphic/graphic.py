@@ -1,25 +1,11 @@
 from __future__ import unicode_literals
-import matplotlib
-import tk
 import matplotlib as mpl
-#mpl.use('qt5agg')
-from PyQt5.QtWidgets import QVBoxLayout
-
 from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg)
 from matplotlib.figure import Figure
-import tkinter
-import datetime
-from tkinter import ttk
-import matplotlib.pyplot as plt
-
 from gui.scroll import Scroll
-
-
-import sys
-#matplotlib.use('Qt5Agg')
-from PyQt5 import QtCore, QtWidgets
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+import matplotlib.style
+from cycler import cycler
 
 
 class Graphic:
@@ -29,15 +15,20 @@ class Graphic:
         self.y = []
         self.frame1 = frame1
 
-
+        mpl.style.use('dark_background')
         mpl.rcParams['figure.raise_window'] = False
         mpl.rcParams['figure.frameon'] = True
         mpl.rcParams['figure.dpi'] = 80
         mpl.rcParams['figure.figsize'] = [13, 40]
         mpl.rcParams['figure.edgecolor'] = 'blue'
-        mpl.rcParams['figure.facecolor'] = '#ffe7e7'
+        mpl.rcParams['figure.facecolor'] = '#474645'
+        mpl.rcParams['axes.grid'] = True
+        mpl.rcParams['grid.color'] = 'gray'
+        mpl.rcParams['grid.linestyle'] = '-.'
+
 
         #self.fig1, self.axes = plt.subplots(8,1,dpi=dpi, figsize = (x_inches,y_inches), subplot_kw={'facecolor': "#ebf5ff"}, constrained_layout = True)
+
         self.fig1 = Figure()
 
 
@@ -45,10 +36,10 @@ class Graphic:
 
 
         self.ax1 = self.fig1.add_subplot(8, 1, 1)
-        self.ax1.scatter(10, 10)
+        self.ax1.scatter(10, 10, alpha=0.2)
 
         self.ax2 = self.fig1.add_subplot(8, 1, 2)
-        self.ax2.plot(2.2, 2,alpha=0.5)
+        self.ax2.plot(2.2, 2)
         self.ax3 = self.fig1.add_subplot(813)
         self.ax3.plot(2.2, 2)
         self.ax4 = self.fig1.add_subplot(814)
@@ -219,7 +210,8 @@ class Graphic:
 
         print(self.x, "\n", self.y)
         self.ax1.clear()
-        self.ax1.scatter(self.x, self.y, color='red')
+        self.ax1.plot(self.x, self.y, color='red', marker='o', alpha=0.1)
+        self.ax1.fill_between(self.x, 0, self.y, facecolor='red', alpha=0.5)
         self.canvas1.flush_events()
         self.canvas1.draw()
 
@@ -249,7 +241,8 @@ class Graphic:
                 self.y.append(y_value)
 
         self.ax2.clear()
-        self.ax2.plot(self.x, self.y, color='red', marker='o')
+        self.ax2.plot(self.x, self.y, color='red', marker='o', alpha=0.1)
+        self.ax2.fill_between(self.x, 0, self.y, facecolor='red', alpha=0.5)
         self.canvas1.flush_events()
         self.canvas1.draw()
 
@@ -277,8 +270,10 @@ class Graphic:
                 print(y_value)
                 self.y.append(y_value)
 
+
         self.ax3.clear()
-        self.ax3.plot(self.x, self.y)
+        self.ax3.plot(self.x, self.y, color='red', marker='o', alpha=0.1)
+        self.ax3.fill_between(self.x, 0, self.y, facecolor='red', alpha=0.5)
         self.canvas1.flush_events()
         self.canvas1.draw()
 
@@ -307,7 +302,8 @@ class Graphic:
                 self.y.append(y_value)
 
         self.ax4.clear()
-        self.ax4.plot(self.x, self.y)
+        self.ax4.plot(self.x, self.y, color='red', marker='o', alpha=0.1)
+        self.ax4.fill_between(self.x, 0, self.y, facecolor='red', alpha=0.5)
         self.canvas1.flush_events()
         self.canvas1.draw()
 
@@ -336,7 +332,8 @@ class Graphic:
                 self.y.append(y_value)
 
         self.ax5.clear()
-        self.ax5.plot(self.x, self.y)
+        self.ax5.plot(self.x, self.y, color='red', marker='o', alpha=0.1)
+        self.ax5.fill_between(self.x, 0, self.y, facecolor='red', alpha=0.5)
         self.canvas1.flush_events()
         self.canvas1.draw()
 
@@ -365,7 +362,8 @@ class Graphic:
                 self.y.append(y_value)
 
         self.ax6.clear()
-        self.ax6.plot(self.x, self.y)
+        self.ax6.plot(self.x, self.y, color='red', marker='o', alpha=0.1)
+        self.ax6.fill_between(self.x, 0, self.y, facecolor='red', alpha=0.5)
         self.canvas1.flush_events()
         self.canvas1.draw()
 
@@ -394,7 +392,8 @@ class Graphic:
                 self.y.append(y_value)
 
         self.ax7.clear()
-        self.ax7.plot(self.x, self.y)
+        self.ax7.plot(self.x, self.y, color='red', marker='o', alpha=0.1)
+        self.ax7.fill_between(self.x, 0, self.y, facecolor='red', alpha=0.5)
         self.canvas1.flush_events()
         self.canvas1.draw()
 
@@ -423,6 +422,7 @@ class Graphic:
                 self.y.append(y_value)
 
         self.ax8.clear()
-        self.ax8.plot(self.x, self.y)
+        self.ax8.plot(self.x, self.y, color='red', marker='o', alpha=0.1)
+        self.ax8.fill_between(self.x, 0, self.y, facecolor='red', alpha=0.5)
         self.canvas1.flush_events()
         self.canvas1.draw()

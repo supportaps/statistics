@@ -146,7 +146,7 @@ class GetKpi:
         length = len(cell.cell_id)
 
         if "lte" in n:
-            query = self.q4[:7] + date_column_name + ', ' + kpi.kpi_list[0] + self.q4[40:46] + n + self.q4[
+            query = self.q4[:7] + date_column_name + ', ' + kpi.kpi_list[1] + self.q4[40:46] + n + self.q4[
                                                                                                    47:60] + "'" + cell.lac + "'" + self.q4[
                                                                                                                                    70:86] + "'" + cell.cell_id[
                                                                                                                                                   0:length - 2] + "'" + self.q4[
@@ -156,7 +156,7 @@ class GetKpi:
                                                                                                                                                                                                                                     149:158] + "'" + kpi.start_date + "'" + self.q4[
                                                                                                                                                                                                                                                                             174:179] + "'" + kpi.end_date + "'"
         elif "4g" in n and "hourly" in n:
-            query = self.q4_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[0] + self.q4_h[
+            query = self.q4_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[1] + self.q4_h[
                                                                                            44:50] + n + self.q4_h[
                                                                                                         51:64] + "'" + cell.lac + "'" + self.q4_h[
                                                                                                                                         74:90] + "'" + cell.cell_id[
@@ -167,7 +167,7 @@ class GetKpi:
                                                                                                                                                                                                                                          153:162] + "'" + kpi.start_date + "'" + self.q4_h[
                                                                                                                                                                                                                                                                                  178:183] + "'" + kpi.end_date + "'"
         elif "2g" in n and "hourly" in n:
-            query = self.q_2_3_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[0] + self.q_2_3_h[
+            query = self.q_2_3_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[1] + self.q_2_3_h[
                                                                                               44:50] + n + self.q_2_3_h[
                                                                                                            51:64] + "'" + cell.lac + "'" + self.q_2_3_h[
                                                                                                                                            74:84] + "'" + cell.cell_id + "'" + self.q_2_3_h[
@@ -175,7 +175,7 @@ class GetKpi:
                                                                                                                                                                                                             119:128] + "'" + kpi.start_date + "'" + self.q_2_3_h[
                                                                                                                                                                                                                                                     144:149] + "'" + kpi.end_date + "'"
         elif "3g" in n and "hourly" in n:
-            query = self.q_2_3_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[0] + self.q_2_3_h[
+            query = self.q_2_3_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[1] + self.q_2_3_h[
                                                                                               44:50] + n + self.q_2_3_h[
                                                                                                            51:64] + "'" + cell.lac + "'" + self.q_2_3_h[
                                                                                                                                            74:84] + "'" + cell.cell_id + "'" + self.q_2_3_h[
@@ -183,14 +183,14 @@ class GetKpi:
                                                                                                                                                                                                             119:128] + "'" + kpi.start_date + "'" + self.q_2_3_h[
                                                                                                                                                                                                                                                     144:149] + "'" + kpi.end_date + "'"
         elif "2g" in n and "daily" in n:
-            query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[0] + self.q_2_3[40:46] + n + self.q_2_3[
+            query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[1] + self.q_2_3[40:46] + n + self.q_2_3[
                                                                                                          47:60] + "'" + cell.lac + "'" + self.q_2_3[
                                                                                                                                          70:80] + "'" + cell.cell_id + "'" + self.q_2_3[
                                                                                                                                                                              94:99] + date_column_name + self.q_2_3[
                                                                                                                                                                                                          115:124] + "'" + kpi.start_date + "'" + self.q_2_3[
                                                                                                                                                                                                                                                  140:145] + "'" + kpi.end_date + "'"
         elif "udaily" in n:
-            query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[0] + self.q_2_3[40:46] + n + self.q_2_3[
+            query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[1] + self.q_2_3[40:46] + n + self.q_2_3[
                                                                                                          47:60] + "'" + cell.lac + "'" + self.q_2_3[
                                                                                                                                          70:80] + "'" + cell.cell_id + "'" + self.q_2_3[
                                                                                                                                                                              94:99] + date_column_name + self.q_2_3[
@@ -209,7 +209,7 @@ class GetKpi:
         length = len(cell.cell_id)
 
         if "lte" in n:
-            query = self.q4[:7] + date_column_name + ', ' + kpi.kpi_list[0] + self.q4[40:46] + n + self.q4[
+            query = self.q4[:7] + date_column_name + ', ' + kpi.kpi_list[2] + self.q4[40:46] + n + self.q4[
                                                                                                    47:60] + "'" + cell.lac + "'" + self.q4[
                                                                                                                                    70:86] + "'" + cell.cell_id[
                                                                                                                                                   0:length - 2] + "'" + self.q4[
@@ -219,7 +219,7 @@ class GetKpi:
                                                                                                                                                                                                                                     149:158] + "'" + kpi.start_date + "'" + self.q4[
                                                                                                                                                                                                                                                                             174:179] + "'" + kpi.end_date + "'"
         elif "4g" in n and "hourly" in n:
-            query = self.q4_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[0] + self.q4_h[44:50] + n + self.q4_h[
+            query = self.q4_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[2] + self.q4_h[44:50] + n + self.q4_h[
                                                                                                                   51:64] + "'" + cell.lac + "'" + self.q4_h[
                                                                                                                                                   74:90] + "'" + cell.cell_id[
                                                                                                                                                                  0:length - 2] + "'" + self.q4_h[
@@ -229,7 +229,7 @@ class GetKpi:
                                                                                                                                                                                                                                                    153:162] + "'" + kpi.start_date + "'" + self.q4_h[
                                                                                                                                                                                                                                                                                            178:183] + "'" + kpi.end_date + "'"
         elif "2g" in n and "hourly" in n:
-            query = self.q_2_3_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[0] + self.q_2_3_h[
+            query = self.q_2_3_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[2] + self.q_2_3_h[
                                                                                               44:50] + n + self.q_2_3_h[
                                                                                                            51:64] + "'" + cell.lac + "'" + self.q_2_3_h[
                                                                                                                                            74:84] + "'" + cell.cell_id + "'" + self.q_2_3_h[
@@ -237,7 +237,7 @@ class GetKpi:
                                                                                                                                                                                                             119:128] + "'" + kpi.start_date + "'" + self.q_2_3_h[
                                                                                                                                                                                                                                                     144:149] + "'" + kpi.end_date + "'"
         elif "3g" in n and "hourly" in n:
-            query = self.q_2_3_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[0] + self.q_2_3_h[
+            query = self.q_2_3_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[2] + self.q_2_3_h[
                                                                                               44:50] + n + self.q_2_3_h[
                                                                                                            51:64] + "'" + cell.lac + "'" + self.q_2_3_h[
                                                                                                                                            74:84] + "'" + cell.cell_id + "'" + self.q_2_3_h[
@@ -245,14 +245,14 @@ class GetKpi:
                                                                                                                                                                                                             119:128] + "'" + kpi.start_date + "'" + self.q_2_3_h[
                                                                                                                                                                                                                                                     144:149] + "'" + kpi.end_date + "'"
         elif "2g" in n and "daily" in n:
-            query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[0] + self.q_2_3[40:46] + n + self.q_2_3[
+            query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[2] + self.q_2_3[40:46] + n + self.q_2_3[
                                                                                                          47:60] + "'" + cell.lac + "'" + self.q_2_3[
                                                                                                                                          70:80] + "'" + cell.cell_id + "'" + self.q_2_3[
                                                                                                                                                                              94:99] + date_column_name + self.q_2_3[
                                                                                                                                                                                                          115:124] + "'" + kpi.start_date + "'" + self.q_2_3[
                                                                                                                                                                                                                                                  140:145] + "'" + kpi.end_date + "'"
         elif "udaily" in n:
-            query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[0] + self.q_2_3[40:46] + n + self.q_2_3[
+            query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[2] + self.q_2_3[40:46] + n + self.q_2_3[
                                                                                                          47:60] + "'" + cell.lac + "'" + self.q_2_3[
                                                                                                                                          70:80] + "'" + cell.cell_id + "'" + self.q_2_3[
                                                                                                                                                                              94:99] + date_column_name + self.q_2_3[
@@ -271,7 +271,7 @@ class GetKpi:
         length = len(cell.cell_id)
 
         if "lte" in n:
-            query = self.q4[:7] + date_column_name + ', ' + kpi.kpi_list[0] + self.q4[40:46] + n + self.q4[
+            query = self.q4[:7] + date_column_name + ', ' + kpi.kpi_list[3] + self.q4[40:46] + n + self.q4[
                                                                                                    47:60] + "'" + cell.lac + "'" + self.q4[
                                                                                                                                    70:86] + "'" + cell.cell_id[
                                                                                                                                                   0:length - 2] + "'" + self.q4[
@@ -281,7 +281,7 @@ class GetKpi:
                                                                                                                                                                                                                                     149:158] + "'" + kpi.start_date + "'" + self.q4[
                                                                                                                                                                                                                                                                             174:179] + "'" + kpi.end_date + "'"
         elif "4g" in n and "hourly" in n:
-            query = self.q4_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[0] + self.q4_h[44:50] + n + self.q4_h[
+            query = self.q4_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[3] + self.q4_h[44:50] + n + self.q4_h[
                                                                                                                   51:64] + "'" + cell.lac + "'" + self.q4_h[
                                                                                                                                                   74:90] + "'" + cell.cell_id[
                                                                                                                                                                  0:length - 2] + "'" + self.q4_h[
@@ -291,7 +291,7 @@ class GetKpi:
                                                                                                                                                                                                                                                    153:162] + "'" + kpi.start_date + "'" + self.q4_h[
                                                                                                                                                                                                                                                                                            178:183] + "'" + kpi.end_date + "'"
         elif "2g" in n and "hourly" in n:
-            query = self.q_2_3_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[0] + self.q_2_3_h[
+            query = self.q_2_3_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[3] + self.q_2_3_h[
                                                                                               44:50] + n + self.q_2_3_h[
                                                                                                            51:64] + "'" + cell.lac + "'" + self.q_2_3_h[
                                                                                                                                            74:84] + "'" + cell.cell_id + "'" + self.q_2_3_h[
@@ -299,7 +299,7 @@ class GetKpi:
                                                                                                                                                                                                             119:128] + "'" + kpi.start_date + "'" + self.q_2_3_h[
                                                                                                                                                                                                                                                     144:149] + "'" + kpi.end_date + "'"
         elif "3g" in n and "hourly" in n:
-            query = self.q_2_3_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[0] + self.q_2_3_h[
+            query = self.q_2_3_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[3] + self.q_2_3_h[
                                                                                               44:50] + n + self.q_2_3_h[
                                                                                                            51:64] + "'" + cell.lac + "'" + self.q_2_3_h[
                                                                                                                                            74:84] + "'" + cell.cell_id + "'" + self.q_2_3_h[
@@ -307,14 +307,14 @@ class GetKpi:
                                                                                                                                                                                                             119:128] + "'" + kpi.start_date + "'" + self.q_2_3_h[
                                                                                                                                                                                                                                                     144:149] + "'" + kpi.end_date + "'"
         elif "2g" in n and "daily" in n:
-            query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[0] + self.q_2_3[40:46] + n + self.q_2_3[
+            query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[3] + self.q_2_3[40:46] + n + self.q_2_3[
                                                                                                          47:60] + "'" + cell.lac + "'" + self.q_2_3[
                                                                                                                                          70:80] + "'" + cell.cell_id + "'" + self.q_2_3[
                                                                                                                                                                              94:99] + date_column_name + self.q_2_3[
                                                                                                                                                                                                          115:124] + "'" + kpi.start_date + "'" + self.q_2_3[
                                                                                                                                                                                                                                                  140:145] + "'" + kpi.end_date + "'"
         elif "udaily" in n:
-            query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[0] + self.q_2_3[40:46] + n + self.q_2_3[
+            query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[3] + self.q_2_3[40:46] + n + self.q_2_3[
                                                                                                          47:60] + "'" + cell.lac + "'" + self.q_2_3[
                                                                                                                                          70:80] + "'" + cell.cell_id + "'" + self.q_2_3[
                                                                                                                                                                              94:99] + date_column_name + self.q_2_3[
@@ -333,7 +333,7 @@ class GetKpi:
         length = len(cell.cell_id)
 
         if "lte" in n:
-            query = self.q4[:7] + date_column_name + ', ' + kpi.kpi_list[0] + self.q4[40:46] + n + self.q4[
+            query = self.q4[:7] + date_column_name + ', ' + kpi.kpi_list[4] + self.q4[40:46] + n + self.q4[
                                                                                                    47:60] + "'" + cell.lac + "'" + self.q4[
                                                                                                                                    70:86] + "'" + cell.cell_id[
                                                                                                                                                   0:length - 2] + "'" + self.q4[
@@ -343,7 +343,7 @@ class GetKpi:
                                                                                                                                                                                                                                     149:158] + "'" + kpi.start_date + "'" + self.q4[
                                                                                                                                                                                                                                                                             174:179] + "'" + kpi.end_date + "'"
         elif "4g" in n and "hourly" in n:
-            query = self.q4_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[0] + self.q4_h[44:50] + n + self.q4_h[
+            query = self.q4_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[4] + self.q4_h[44:50] + n + self.q4_h[
                                                                                                                   51:64] + "'" + cell.lac + "'" + self.q4_h[
                                                                                                                                                   74:90] + "'" + cell.cell_id[
                                                                                                                                                                  0:length - 2] + "'" + self.q4_h[
@@ -353,7 +353,7 @@ class GetKpi:
                                                                                                                                                                                                                                                    153:162] + "'" + kpi.start_date + "'" + self.q4_h[
                                                                                                                                                                                                                                                                                            178:183] + "'" + kpi.end_date + "'"
         elif "2g" in n and "hourly" in n:
-            query = self.q_2_3_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[0] + self.q_2_3_h[
+            query = self.q_2_3_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[4] + self.q_2_3_h[
                                                                                               44:50] + n + self.q_2_3_h[
                                                                                                            51:64] + "'" + cell.lac + "'" + self.q_2_3_h[
                                                                                                                                            74:84] + "'" + cell.cell_id + "'" + self.q_2_3_h[
@@ -361,7 +361,7 @@ class GetKpi:
                                                                                                                                                                                                             119:128] + "'" + kpi.start_date + "'" + self.q_2_3_h[
                                                                                                                                                                                                                                                     144:149] + "'" + kpi.end_date + "'"
         elif "3g" in n and "hourly" in n:
-            query = self.q_2_3_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[0] + self.q_2_3_h[
+            query = self.q_2_3_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[4] + self.q_2_3_h[
                                                                                               44:50] + n + self.q_2_3_h[
                                                                                                            51:64] + "'" + cell.lac + "'" + self.q_2_3_h[
                                                                                                                                            74:84] + "'" + cell.cell_id + "'" + self.q_2_3_h[
@@ -369,14 +369,14 @@ class GetKpi:
                                                                                                                                                                                                             119:128] + "'" + kpi.start_date + "'" + self.q_2_3_h[
                                                                                                                                                                                                                                                     144:149] + "'" + kpi.end_date + "'"
         elif "2g" in n and "daily" in n:
-            query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[0] + self.q_2_3[40:46] + n + self.q_2_3[
+            query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[4] + self.q_2_3[40:46] + n + self.q_2_3[
                                                                                                          47:60] + "'" + cell.lac + "'" + self.q_2_3[
                                                                                                                                          70:80] + "'" + cell.cell_id + "'" + self.q_2_3[
                                                                                                                                                                              94:99] + date_column_name + self.q_2_3[
                                                                                                                                                                                                          115:124] + "'" + kpi.start_date + "'" + self.q_2_3[
                                                                                                                                                                                                                                                  140:145] + "'" + kpi.end_date + "'"
         elif "udaily" in n:
-            query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[0] + self.q_2_3[40:46] + n + self.q_2_3[
+            query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[4] + self.q_2_3[40:46] + n + self.q_2_3[
                                                                                                          47:60] + "'" + cell.lac + "'" + self.q_2_3[
                                                                                                                                          70:80] + "'" + cell.cell_id + "'" + self.q_2_3[
                                                                                                                                                                              94:99] + date_column_name + self.q_2_3[
@@ -395,7 +395,7 @@ class GetKpi:
         length = len(cell.cell_id)
 
         if "lte" in n:
-            query = self.q4[:7] + date_column_name + ', ' + kpi.kpi_list[0] + self.q4[40:46] + n + self.q4[
+            query = self.q4[:7] + date_column_name + ', ' + kpi.kpi_list[5] + self.q4[40:46] + n + self.q4[
                                                                                                    47:60] + "'" + cell.lac + "'" + self.q4[
                                                                                                                                    70:86] + "'" + cell.cell_id[
                                                                                                                                                   0:length - 2] + "'" + self.q4[
@@ -405,7 +405,7 @@ class GetKpi:
                                                                                                                                                                                                                                     149:158] + "'" + kpi.start_date + "'" + self.q4[
                                                                                                                                                                                                                                                                             174:179] + "'" + kpi.end_date + "'"
         elif "4g" in n and "hourly" in n:
-            query = self.q4_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[0] + self.q4_h[44:50] + n + self.q4_h[
+            query = self.q4_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[5] + self.q4_h[44:50] + n + self.q4_h[
                                                                                                                   51:64] + "'" + cell.lac + "'" + self.q4_h[
                                                                                                                                                   74:90] + "'" + cell.cell_id[
                                                                                                                                                                  0:length - 2] + "'" + self.q4_h[
@@ -415,7 +415,7 @@ class GetKpi:
                                                                                                                                                                                                                                                    153:162] + "'" + kpi.start_date + "'" + self.q4_h[
                                                                                                                                                                                                                                                                                            178:183] + "'" + kpi.end_date + "'"
         elif "2g" in n and "hourly" in n:
-            query = self.q_2_3_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[0] + self.q_2_3_h[
+            query = self.q_2_3_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[5] + self.q_2_3_h[
                                                                                               44:50] + n + self.q_2_3_h[
                                                                                                            51:64] + "'" + cell.lac + "'" + self.q_2_3_h[
                                                                                                                                            74:84] + "'" + cell.cell_id + "'" + self.q_2_3_h[
@@ -423,7 +423,7 @@ class GetKpi:
                                                                                                                                                                                                             119:128] + "'" + kpi.start_date + "'" + self.q_2_3_h[
                                                                                                                                                                                                                                                     144:149] + "'" + kpi.end_date + "'"
         elif "3g" in n and "hourly" in n:
-            query = self.q_2_3_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[0] + self.q_2_3_h[
+            query = self.q_2_3_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[5] + self.q_2_3_h[
                                                                                               44:50] + n + self.q_2_3_h[
                                                                                                            51:64] + "'" + cell.lac + "'" + self.q_2_3_h[
                                                                                                                                            74:84] + "'" + cell.cell_id + "'" + self.q_2_3_h[
@@ -431,20 +431,20 @@ class GetKpi:
                                                                                                                                                                                                             119:128] + "'" + kpi.start_date + "'" + self.q_2_3_h[
                                                                                                                                                                                                                                                     144:149] + "'" + kpi.end_date + "'"
         elif "2g" in n and "daily" in n:
-            query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[0] + self.q_2_3[40:46] + n + self.q_2_3[
+            query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[5] + self.q_2_3[40:46] + n + self.q_2_3[
                                                                                                          47:60] + "'" + cell.lac + "'" + self.q_2_3[
                                                                                                                                          70:80] + "'" + cell.cell_id + "'" + self.q_2_3[
                                                                                                                                                                              94:99] + date_column_name + self.q_2_3[
                                                                                                                                                                                                          115:124] + "'" + kpi.start_date + "'" + self.q_2_3[
                                                                                                                                                                                                                                                  140:145] + "'" + kpi.end_date + "'"
         elif "udaily" in n:
-            query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[0] + self.q_2_3[40:46] + n + self.q_2_3[
+            query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[5] + self.q_2_3[40:46] + n + self.q_2_3[
                                                                                                          47:60] + "'" + cell.lac + "'" + self.q_2_3[
                                                                                                                                          70:80] + "'" + cell.cell_id + "'" + self.q_2_3[
                                                                                                                                                                              94:99] + date_column_name + self.q_2_3[
                                                                                                                                                                                                          115:124] + "'" + kpi.start_date + "'" + self.q_2_3[
                                                                                                                                                                                                                                                  140:145] + "'" + kpi.end_date + "'"
-        print("DB_QUERY1", query)
+        print("DB_QUERY6", query)
         cursor.execute(query)
         result_set = cursor.fetchall()
         return result_set
@@ -457,9 +457,9 @@ class GetKpi:
         length = len(cell.cell_id)
 
         if "lte" in n:
-            query = self.q4[:7] + date_column_name + ', ' + kpi.kpi_list[0] + self.q4[40:46] + n + self.q4[
+            query = self.q4[:7] + date_column_name + ', ' + kpi.kpi_list[6] + self.q4[40:46] + n + self.q4[
                                                                                                    47:60] + "'" + cell.lac + "'" + self.q4[
-                                                                                                                                   70:86] + "'" + cell.cell_id[
+                                                                                                                               70:86] + "'" + cell.cell_id[
                                                                                                                                                   0:length - 2] + "'" + self.q4[
                                                                                                                                                                         100:114] + "'" + cell.cell_id[
                                                                                                                                                                                          -2:] + "'" + self.q4[
@@ -467,7 +467,7 @@ class GetKpi:
                                                                                                                                                                                                                                     149:158] + "'" + kpi.start_date + "'" + self.q4[
                                                                                                                                                                                                                                                                             174:179] + "'" + kpi.end_date + "'"
         elif "4g" in n and "hourly" in n:
-            query = self.q4_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[0] + self.q4_h[44:50] + n + self.q4_h[
+            query = self.q4_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[6] + self.q4_h[44:50] + n + self.q4_h[
                                                                                                                   51:64] + "'" + cell.lac + "'" + self.q4_h[
                                                                                                                                                   74:90] + "'" + cell.cell_id[
                                                                                                                                                                  0:length - 2] + "'" + self.q4_h[
@@ -477,7 +477,7 @@ class GetKpi:
                                                                                                                                                                                                                                                    153:162] + "'" + kpi.start_date + "'" + self.q4_h[
                                                                                                                                                                                                                                                                                            178:183] + "'" + kpi.end_date + "'"
         elif "2g" in n and "hourly" in n:
-            query = self.q_2_3_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[0] + self.q_2_3_h[
+            query = self.q_2_3_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[6] + self.q_2_3_h[
                                                                                               44:50] + n + self.q_2_3_h[
                                                                                                            51:64] + "'" + cell.lac + "'" + self.q_2_3_h[
                                                                                                                                            74:84] + "'" + cell.cell_id + "'" + self.q_2_3_h[
@@ -485,7 +485,7 @@ class GetKpi:
                                                                                                                                                                                                             119:128] + "'" + kpi.start_date + "'" + self.q_2_3_h[
                                                                                                                                                                                                                                                     144:149] + "'" + kpi.end_date + "'"
         elif "3g" in n and "hourly" in n:
-            query = self.q_2_3_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[0] + self.q_2_3_h[
+            query = self.q_2_3_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[6] + self.q_2_3_h[
                                                                                               44:50] + n + self.q_2_3_h[
                                                                                                            51:64] + "'" + cell.lac + "'" + self.q_2_3_h[
                                                                                                                                            74:84] + "'" + cell.cell_id + "'" + self.q_2_3_h[
@@ -493,20 +493,20 @@ class GetKpi:
                                                                                                                                                                                                             119:128] + "'" + kpi.start_date + "'" + self.q_2_3_h[
                                                                                                                                                                                                                                                     144:149] + "'" + kpi.end_date + "'"
         elif "2g" in n and "daily" in n:
-            query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[0] + self.q_2_3[40:46] + n + self.q_2_3[
+            query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[6] + self.q_2_3[40:46] + n + self.q_2_3[
                                                                                                          47:60] + "'" + cell.lac + "'" + self.q_2_3[
                                                                                                                                          70:80] + "'" + cell.cell_id + "'" + self.q_2_3[
                                                                                                                                                                              94:99] + date_column_name + self.q_2_3[
                                                                                                                                                                                                          115:124] + "'" + kpi.start_date + "'" + self.q_2_3[
                                                                                                                                                                                                                                                  140:145] + "'" + kpi.end_date + "'"
         elif "udaily" in n:
-            query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[0] + self.q_2_3[40:46] + n + self.q_2_3[
+            query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[6] + self.q_2_3[40:46] + n + self.q_2_3[
                                                                                                          47:60] + "'" + cell.lac + "'" + self.q_2_3[
                                                                                                                                          70:80] + "'" + cell.cell_id + "'" + self.q_2_3[
                                                                                                                                                                              94:99] + date_column_name + self.q_2_3[
                                                                                                                                                                                                          115:124] + "'" + kpi.start_date + "'" + self.q_2_3[
                                                                                                                                                                                                                                                  140:145] + "'" + kpi.end_date + "'"
-        print("DB_QUERY1", query)
+        print("DB_QUERY7", query)
         cursor.execute(query)
         result_set = cursor.fetchall()
         return result_set
@@ -519,7 +519,7 @@ class GetKpi:
         length = len(cell.cell_id)
 
         if "lte" in n:
-            query = self.q4[:7] + date_column_name + ', ' + kpi.kpi_list[0] + self.q4[40:46] + n + self.q4[
+            query = self.q4[:7] + date_column_name + ', ' + kpi.kpi_list[7] + self.q4[40:46] + n + self.q4[
                                                                                                    47:60] + "'" + cell.lac + "'" + self.q4[
                                                                                                                                    70:86] + "'" + cell.cell_id[
                                                                                                                                                   0:length - 2] + "'" + self.q4[
@@ -529,7 +529,7 @@ class GetKpi:
                                                                                                                                                                                                                                     149:158] + "'" + kpi.start_date + "'" + self.q4[
                                                                                                                                                                                                                                                                             174:179] + "'" + kpi.end_date + "'"
         elif "4g" in n and "hourly" in n:
-            query = self.q4_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[0] + self.q4_h[44:50] + n + self.q4_h[
+            query = self.q4_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[7] + self.q4_h[44:50] + n + self.q4_h[
                                                                                                                   51:64] + "'" + cell.lac + "'" + self.q4_h[
                                                                                                                                                   74:90] + "'" + cell.cell_id[
                                                                                                                                                                  0:length - 2] + "'" + self.q4_h[
@@ -539,7 +539,7 @@ class GetKpi:
                                                                                                                                                                                                                                                    153:162] + "'" + kpi.start_date + "'" + self.q4_h[
                                                                                                                                                                                                                                                                                            178:183] + "'" + kpi.end_date + "'"
         elif "2g" in n and "hourly" in n:
-            query = self.q_2_3_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[0] + self.q_2_3_h[
+            query = self.q_2_3_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[7] + self.q_2_3_h[
                                                                                               44:50] + n + self.q_2_3_h[
                                                                                                            51:64] + "'" + cell.lac + "'" + self.q_2_3_h[
                                                                                                                                            74:84] + "'" + cell.cell_id + "'" + self.q_2_3_h[
@@ -547,7 +547,7 @@ class GetKpi:
                                                                                                                                                                                                             119:128] + "'" + kpi.start_date + "'" + self.q_2_3_h[
                                                                                                                                                                                                                                                     144:149] + "'" + kpi.end_date + "'"
         elif "3g" in n and "hourly" in n:
-            query = self.q_2_3_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[0] + self.q_2_3_h[
+            query = self.q_2_3_h[:7] + date_column_name + ', ' + h + ', ' + kpi.kpi_list[7] + self.q_2_3_h[
                                                                                               44:50] + n + self.q_2_3_h[
                                                                                                            51:64] + "'" + cell.lac + "'" + self.q_2_3_h[
                                                                                                                                            74:84] + "'" + cell.cell_id + "'" + self.q_2_3_h[
@@ -555,20 +555,20 @@ class GetKpi:
                                                                                                                                                                                                             119:128] + "'" + kpi.start_date + "'" + self.q_2_3_h[
                                                                                                                                                                                                                                                     144:149] + "'" + kpi.end_date + "'"
         elif "2g" in n and "daily" in n:
-            query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[0] + self.q_2_3[40:46] + n + self.q_2_3[
+            query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[7] + self.q_2_3[40:46] + n + self.q_2_3[
                                                                                                          47:60] + "'" + cell.lac + "'" + self.q_2_3[
                                                                                                                                          70:80] + "'" + cell.cell_id + "'" + self.q_2_3[
                                                                                                                                                                              94:99] + date_column_name + self.q_2_3[
                                                                                                                                                                                                          115:124] + "'" + kpi.start_date + "'" + self.q_2_3[
                                                                                                                                                                                                                                                  140:145] + "'" + kpi.end_date + "'"
         elif "udaily" in n:
-            query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[0] + self.q_2_3[40:46] + n + self.q_2_3[
+            query = self.q_2_3[:7] + date_column_name + ', ' + kpi.kpi_list[7] + self.q_2_3[40:46] + n + self.q_2_3[
                                                                                                          47:60] + "'" + cell.lac + "'" + self.q_2_3[
                                                                                                                                          70:80] + "'" + cell.cell_id + "'" + self.q_2_3[
                                                                                                                                                                              94:99] + date_column_name + self.q_2_3[
                                                                                                                                                                                                          115:124] + "'" + kpi.start_date + "'" + self.q_2_3[
                                                                                                                                                                                                                                                  140:145] + "'" + kpi.end_date + "'"
-        print("DB_QUERY1", query)
+        print("DB_QUERY8", query)
         cursor.execute(query)
         result_set = cursor.fetchall()
         return result_set
