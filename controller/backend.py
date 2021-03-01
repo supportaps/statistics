@@ -1,4 +1,6 @@
 import cx_Oracle
+import pymssql
+import pymysql
 
 from config.config import Config
 
@@ -11,6 +13,9 @@ class GetKpi:
         self.q4 = self.config.query_graphic_4g_daily()
         self.q4_h = self.config.query_graphic_4g_hourly()
         self.q_2_3_h = self.config.query_graphic_2g_3g_hourly()
+        self.net_data_2g_hua = self.config.query_2g_net_data_hua()
+        self.net_data_2g_nsn = self.config.query_2g_net_data_nsn()
+        self.net_data_2g_zte = self.config.query_2g_net_data_zte()
 
     def conn_driver(self):
         config = Config()
@@ -574,6 +579,29 @@ class GetKpi:
         return result_set
         cursor.close()
 
+
+    def get_parameters_for_cell(self,n, cell):
+        conn_db = pymysql.connect(host=self.config.config_net_data()[0], user=self.config.config_net_data()[1], password=self.config.config_net_data()[2],
+                                  db=self.config.config_net_data()[3])
+        cursor = conn_db.cursor()
+        if "2g" in n:
+            query = self.net_data_2g_hua
+            cursor.execute(query)
+            result_set = cursor.fetchall()
+            if result_set:
+                return result_set
+            else:
+                query = 'nsn'
+                cursor.execute(query)
+                result_set = cursor.fetchall()
+                if result_set:
+                    return result_set
+                else:
+                    query = 'zte'
+                    cursor.execute(query)
+                    result_set = cursor.fetchall()
+                    if result_set:
+                        return result_set
 
     def get_unique2(self):
             cursor, result_list = self.db_conn()

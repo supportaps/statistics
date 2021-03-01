@@ -16,6 +16,14 @@ class Config:
         self.config.read('settings.ini')
         return self.config['connect']['login'], self.config['connect']['password']
 
+    def config_net_data(self):
+        self.config.read('settings.ini')
+        return self.config['net_data']['h'], self.config['net_data']['u'], self.config['net_data']['p'], self.config['net_data']['d']
+
+    def config_rpdb_data(self):
+        self.config.read('settings.ini')
+        return self.config['rpdb_data']['h'], self.config['rpdb_data']['u'], self.config['rpdb_data']['p'], self.config['rpdb_data']['d']
+
     def query_graphic(self):
         self.config.read('settings.ini')
         return self.config['query_graphic']['test_query']
@@ -61,6 +69,18 @@ class Config:
     def query_head_4gd(self):
         self.config.read('settings.ini')
         return self.config['query_4g_d']['col_query_4g_d']
+
+    def query_2g_net_data_hua(self):
+        self.config.read('settings.ini')
+        return self.config['query_net_data_hua']['query']
+
+    def query_2g_net_data_nsn(self):
+        self.config.read('settings.ini')
+        return self.config['query_net_data_nsn']['query']
+
+    def query_2g_net_data_zte(self):
+        self.config.read('settings.ini')
+        return self.config['query_net_data_zte']['query']
 
     def n1(self):
         self.config.read('settings.ini')

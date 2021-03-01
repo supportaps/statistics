@@ -5,6 +5,7 @@ from tkcalendar import DateEntry, Calendar
 
 from controller.backend import GetKpi
 from graphic.graphic import Graphic
+from gui.cellinfo import Cellinfo
 from kpi.kpi import Kpi
 from model.cell import Cell
 
@@ -55,8 +56,9 @@ class Gui:
 
         self.output_data_present1 = tkinter.Frame(self.main_window)
         self.output_data_present1.pack(side='left', fill='y', expand=0)
-        self.output_data_present2 = tkinter.Frame(self.main_window, relief='raised')
-        self.output_data_present2.pack(side='left', fill='y', expand=0)
+        #self.output_data_present2 = tkinter.Frame(self.main_window)
+        #self.output_data_present2.pack(side='left', fill='y', expand=0)
+
 
         self.cal_start_lab = tkinter.Label(self.input_data_fr, text='Choose date', background="#6E6C6B").pack(side='top', padx=10, pady=10)
         self.cal_start_chosen_date_var = tkinter.StringVar()
@@ -73,24 +75,30 @@ class Gui:
         self.cal_end_ent.bind("<<DateEntrySelected>>", self.set_date_end)
         self.cal_end_ent.pack(padx=10, pady=10)
 
+        self.tech_label_fr = tkinter.LabelFrame(self.input_data_fr, text='Technology',background="#6E6C6B")
+        self.tech_label_fr.pack()
+        self.period_label_fr = tkinter.LabelFrame(self.input_data_fr, text='Period',background="#6E6C6B")
+        self.period_label_fr.pack()
+
+
         self.var_tech = tkinter.IntVar()
         self.var_tech.set(0)
-        self.choose_tech_gsm_rb = tkinter.Radiobutton(self.input_data_fr, text='GSM', background="#6E6C6B", variable=self.var_tech, value=1,
+        self.choose_tech_gsm_rb = tkinter.Radiobutton(self.tech_label_fr, text='GSM', background="#6E6C6B", variable=self.var_tech, value=1,
                                                       command=self.rb_tech_call)
         self.choose_tech_gsm_rb.pack(side='top')
-        self.choose_tech_wcdma_rb = tkinter.Radiobutton(self.input_data_fr, text='WCDMA', background="#6E6C6B", variable=self.var_tech,
+        self.choose_tech_wcdma_rb = tkinter.Radiobutton(self.tech_label_fr, text='WCDMA', background="#6E6C6B", variable=self.var_tech,
                                                         value=2, command=self.rb_tech_call)
         self.choose_tech_wcdma_rb.pack(side='top')
-        self.choose_tech_lte_rb = tkinter.Radiobutton(self.input_data_fr, text='LTE', background="#6E6C6B", variable=self.var_tech, value=3,
+        self.choose_tech_lte_rb = tkinter.Radiobutton(self.tech_label_fr, text='LTE', background="#6E6C6B", variable=self.var_tech, value=3,
                                                       command=self.rb_tech_call)
         self.choose_tech_lte_rb.pack(side='top')
 
         self.var_period = tkinter.IntVar()
         self.var_period.set(0)
-        self.choose_hourly_rb = tkinter.Radiobutton(self.input_data_fr, text='Hourly', background="#6E6C6B", variable=self.var_period,
+        self.choose_hourly_rb = tkinter.Radiobutton(self.period_label_fr, text='Hourly', background="#6E6C6B", variable=self.var_period,
                                                     value=1, command=self.rb_tech_call)
         self.choose_hourly_rb.pack(side='top')
-        self.choose_daily_rb = tkinter.Radiobutton(self.input_data_fr, text='Daily', background="#6E6C6B", variable=self.var_period, value=2,
+        self.choose_daily_rb = tkinter.Radiobutton(self.period_label_fr, text='Daily', background="#6E6C6B", variable=self.var_period, value=2,
                                                    command=self.rb_tech_call)
         self.choose_daily_rb.pack(side='top')
 
@@ -156,6 +164,8 @@ class Gui:
         self.cb8 = ttk.Combobox(self.input_data_fr, textvariable=self.kpi_chosen8)
         self.cb8.pack()
 
+
+
         self.cb_items.append(self.cb1)
         self.cb_items.append(self.cb2)
         self.cb_items.append(self.cb3)
@@ -167,6 +177,7 @@ class Gui:
 
         # graph1 = self.graphic.draw_plot(self.main_window)
         self.graphic = Graphic(self.output_data_present1)
+
 
         self.main_window.mainloop()
 
@@ -393,8 +404,7 @@ class Gui:
             self.chosen_column_cell_identity.append(lac_list)
             self.chosen_column_cell_identity.append(cell_id_list)
             self.chosen_column_cell_identity.append(cell_name_list)
-            print("CELLNAMELIST :", cell_name_list)
-                #print("DATA STRUCTER: ",self.chosen_column_cell_identity)
+
             for cb in self.cb_items:
                 cb.configure(values=self.column_2gh)
                 cb.bind("<FocusIn>", self.bind_combobox)
@@ -503,15 +513,13 @@ class Gui:
 
     def set_date_start(self, event):
         start = self.cal_start_ent.get_date().strftime("%d-%b-%y")
-        print(start)
         self.cal_start_chosen_date_var.set(start)
-        print(self.cal_start_chosen_date_var.get())
+
 
     def set_date_end(self, event):
         end = self.cal_end_ent.get_date().strftime("%d-%b-%y")
-        print(end)
         self.cal_end_chosen_date_var.set(end)
-        print(self.cal_end_chosen_date_var.get())
+
 
     def get_cell_name_from_ent(self):
         return self.input_cell_name_cb.get()
@@ -544,7 +552,7 @@ class Gui:
         kpi_item = Kpi(self.get_kpi_columns(), self.cal_start_chosen_date_var.get(), self.cal_end_chosen_date_var.get())
         n = self.get_name()
 
-        print("DATE COLUMN NAME: ", self.date_column_name)
+
 
         result_for_graphic1 = self.kpi_data.get_data_for_graphic1(cell, kpi_item, n, self.date_column_name, self.hour_column_name)
         result_for_graphic2 = self.kpi_data.get_data_for_graphic2(cell, kpi_item, n, self.date_column_name, self.hour_column_name)
@@ -582,7 +590,7 @@ class Gui:
 
         cell = Cell(found_name, found_ci, found_lac)
 
-        self.get_results_from_source(cell)
+        #self.get_results_from_source(cell)
         self.update_plots(cell)
 
     def get_data_for_graphics_by_lac_ci(self):
@@ -591,8 +599,8 @@ class Gui:
 
         kpi_item = Kpi(self.get_kpi_columns(), self.cal_start_chosen_date_var.get(), self.cal_end_chosen_date_var.get())
         n = self.get_name()
+        # SET BSC NUMBER
 
-        print("DATE COLUMN NAME: ", self.date_column_name)
 
         result_for_graphic1 = self.kpi_data.get_data_for_graphic1(cell, kpi_item, n, self.date_column_name, self.hour_column_name)
         result_for_graphic2 = self.kpi_data.get_data_for_graphic2(cell, kpi_item, n, self.date_column_name, self.hour_column_name)

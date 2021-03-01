@@ -3,6 +3,8 @@ import matplotlib as mpl
 from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg)
 from matplotlib.figure import Figure
+
+from gui.cellinfo import Cellinfo
 from gui.scroll import Scroll
 import matplotlib.style
 from cycler import cycler
@@ -57,22 +59,18 @@ class Graphic:
 
         self.fig1.tight_layout()
 
-        self.canvas1 = FigureCanvasTkAgg(self.fig1, master=self.frame1,)
+        self.canvas1 = FigureCanvasTkAgg(self.fig1, master=self.frame1)
+        vertical_scroll = Scroll(self.canvas1, self.frame1, self.fig1)
         self.canvas1.get_tk_widget().itemconfigure(self.fig1, width=300, height=300 )
 
+        self.cellinfo = Cellinfo(self.frame1)
+
         self.canvas1.draw()
-        self.canvas1.get_tk_widget().pack(side='left', expand=False)
+        self.canvas1.get_tk_widget().pack(side='right')
+
 
         self.canvas1.get_tk_widget().bind("<Configure>", self.canvas_dimen)
         self.canvas1.get_tk_widget().update_idletasks()
-
-
-
-
-
-
-
-        vertical_scroll = Scroll(self.canvas1, self.frame1, self.fig1)
 
         self.canvas1.mpl_connect('resize_event', self.resize)
 
@@ -185,7 +183,7 @@ class Graphic:
 
 
     def update_plot_graphik1(self, result_data_graphic, n):
-        print(result_data_graphic)
+
         self.x.clear()
         self.y.clear()
 
@@ -198,7 +196,7 @@ class Graphic:
             else:
                 date_point = result_data_graphic[item][0]
                 y_value = result_data_graphic[item][1]
-            print(date_point,'\n', y_value)
+
 
             self.x.append(date_point)
             if y_value is None:
@@ -210,14 +208,14 @@ class Graphic:
 
         print(self.x, "\n", self.y)
         self.ax1.clear()
-        self.ax1.plot(self.x, self.y, color='red', marker='o', alpha=0.1)
-        self.ax1.fill_between(self.x, 0, self.y, facecolor='red', alpha=0.5)
+        self.ax1.plot(self.x, self.y, color='red', marker='o', alpha=0.5, linewidth=2.5, markersize=3)
+        self.ax1.fill_between(self.x, 0, self.y, facecolor='red', alpha=0.2)
         self.canvas1.flush_events()
         self.canvas1.draw()
 
 
     def update_plot_graphik2(self, result_data_graphic, n):
-        print(result_data_graphic)
+
         self.x.clear()
         self.y.clear()
 
@@ -230,14 +228,14 @@ class Graphic:
             else:
                 date_point = result_data_graphic[item][0]
                 y_value = result_data_graphic[item][1]
-            print(date_point, '\n', y_value)
+
 
             self.x.append(date_point)
             if y_value is None:
 
                 self.y.append(0)
             else:
-                print(y_value)
+
                 self.y.append(y_value)
 
         self.ax2.clear()
@@ -247,7 +245,7 @@ class Graphic:
         self.canvas1.draw()
 
     def update_plot_graphik3(self, result_data_graphic, n):
-        print(result_data_graphic)
+
         self.x.clear()
         self.y.clear()
 
@@ -260,14 +258,14 @@ class Graphic:
             else:
                 date_point = result_data_graphic[item][0]
                 y_value = result_data_graphic[item][1]
-            print(date_point, '\n', y_value)
+
 
             self.x.append(date_point)
             if y_value is None:
 
                 self.y.append(0)
             else:
-                print(y_value)
+
                 self.y.append(y_value)
 
 
@@ -278,7 +276,7 @@ class Graphic:
         self.canvas1.draw()
 
     def update_plot_graphik4(self, result_data_graphic, n):
-        print(result_data_graphic)
+
         self.x.clear()
         self.y.clear()
 
@@ -291,14 +289,14 @@ class Graphic:
             else:
                 date_point = result_data_graphic[item][0]
                 y_value = result_data_graphic[item][1]
-            print(date_point, '\n', y_value)
+
 
             self.x.append(date_point)
             if y_value is None:
 
                 self.y.append(0)
             else:
-                print(y_value)
+
                 self.y.append(y_value)
 
         self.ax4.clear()
@@ -308,7 +306,7 @@ class Graphic:
         self.canvas1.draw()
 
     def update_plot_graphik5(self, result_data_graphic, n):
-        print(result_data_graphic)
+
         self.x.clear()
         self.y.clear()
 
@@ -321,14 +319,13 @@ class Graphic:
             else:
                 date_point = result_data_graphic[item][0]
                 y_value = result_data_graphic[item][1]
-            print(date_point, '\n', y_value)
 
             self.x.append(date_point)
             if y_value is None:
 
                 self.y.append(0)
             else:
-                print(y_value)
+
                 self.y.append(y_value)
 
         self.ax5.clear()
@@ -338,7 +335,7 @@ class Graphic:
         self.canvas1.draw()
 
     def update_plot_graphik6(self, result_data_graphic, n):
-        print(result_data_graphic)
+
         self.x.clear()
         self.y.clear()
 
@@ -351,14 +348,14 @@ class Graphic:
             else:
                 date_point = result_data_graphic[item][0]
                 y_value = result_data_graphic[item][1]
-            print(date_point, '\n', y_value)
+
 
             self.x.append(date_point)
             if y_value is None:
 
                 self.y.append(0)
             else:
-                print(y_value)
+
                 self.y.append(y_value)
 
         self.ax6.clear()
@@ -368,7 +365,7 @@ class Graphic:
         self.canvas1.draw()
 
     def update_plot_graphik7(self, result_data_graphic, n):
-        print(result_data_graphic)
+
         self.x.clear()
         self.y.clear()
 
@@ -381,14 +378,14 @@ class Graphic:
             else:
                 date_point = result_data_graphic[item][0]
                 y_value = result_data_graphic[item][1]
-            print(date_point, '\n', y_value)
+
 
             self.x.append(date_point)
             if y_value is None:
 
                 self.y.append(0)
             else:
-                print(y_value)
+
                 self.y.append(y_value)
 
         self.ax7.clear()
@@ -398,7 +395,7 @@ class Graphic:
         self.canvas1.draw()
 
     def update_plot_graphik8(self, result_data_graphic, n):
-        print(result_data_graphic)
+
         self.x.clear()
         self.y.clear()
 
@@ -411,14 +408,14 @@ class Graphic:
             else:
                 date_point = result_data_graphic[item][0]
                 y_value = result_data_graphic[item][1]
-            print(date_point, '\n', y_value)
+
 
             self.x.append(date_point)
             if y_value is None:
 
                 self.y.append(0)
             else:
-                print(y_value)
+
                 self.y.append(y_value)
 
         self.ax8.clear()
