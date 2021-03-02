@@ -587,8 +587,9 @@ class Gui:
                     found_name = self.unique_result[_][2] + self.unique_result[_][3] + self.unique_result[_][4]
                     found_lac = str(self.unique_result[_][0])
                     found_ci =  str(self.unique_result[_][1])
+                    found_controller = self.unique_result[_][5]
 
-        cell = Cell(found_name, found_ci, found_lac)
+        cell = Cell(found_name, found_ci, found_lac, found_controller)
 
         #self.get_results_from_source(cell)
         self.update_plots(cell)

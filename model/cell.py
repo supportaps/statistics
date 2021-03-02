@@ -1,9 +1,10 @@
 
 class Cell:
-    def __init__(self, name, cell_id, lac):
+    def __init__(self, name, cell_id, lac, controller):
         self.name = name
         self.cell_id = cell_id
         self.lac = lac
+        self.controller = controller
 
     @property
     def lac(self):
@@ -29,8 +30,14 @@ class Cell:
     def cell_id(self, value):
         self.__cell_id = value
 
+    @property
+    def controller(self):
+        return self.__controller
 
+    @controller.setter
+    def controller(self, value):
+        self.__controller = value
 
 
     def __str__(self):
-        return f"{self.__name}, {self.__cell_id}, {self.__lac}"
+        return f"{self.__name}, {self.__cell_id}, {self.__lac}, {self.__controller}"

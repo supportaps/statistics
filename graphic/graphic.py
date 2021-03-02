@@ -7,7 +7,7 @@ from matplotlib.figure import Figure
 from gui.cellinfo import Cellinfo
 from gui.scroll import Scroll
 import matplotlib.style
-from cycler import cycler
+
 
 
 class Graphic:
@@ -28,14 +28,7 @@ class Graphic:
         mpl.rcParams['grid.color'] = 'gray'
         mpl.rcParams['grid.linestyle'] = '-.'
 
-
-        #self.fig1, self.axes = plt.subplots(8,1,dpi=dpi, figsize = (x_inches,y_inches), subplot_kw={'facecolor': "#ebf5ff"}, constrained_layout = True)
-
         self.fig1 = Figure()
-
-
-
-
 
         self.ax1 = self.fig1.add_subplot(8, 1, 1)
         self.ax1.scatter(10, 10, alpha=0.2)
