@@ -56,7 +56,7 @@ class Graphic:
         vertical_scroll = Scroll(self.canvas1, self.frame1, self.fig1)
         self.canvas1.get_tk_widget().itemconfigure(self.fig1, width=300, height=300 )
 
-        self.cellinfo = Cellinfo(self.frame1)
+        self.cellinfo = Cellinfo(self.frame1,cell=None)
 
         self.canvas1.draw()
         self.canvas1.get_tk_widget().pack(side='right')

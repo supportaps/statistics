@@ -581,23 +581,25 @@ class GetKpi:
 
 
     def get_parameters_for_cell(self,n, cell):
-        conn_db = pymysql.connect(host=self.config.config_net_data()[0], user=self.config.config_net_data()[1], password=self.config.config_net_data()[2],
-                                  db=self.config.config_net_data()[3])
+
+        config_data = self.config.config_net_data()
+        conn_db = pymysql.connect(host=rf"{config_data[0]}", user=rf"{config_data[1]}", password=rf"{config_data[2]}",
+                                  db=rf"{config_data[3]}")
         cursor = conn_db.cursor()
         if "2g" in n:
-            query = self.net_data_2g_hua
+            query = self.net_data_2g_hua[:73] + cell.lac + self.net_data_2g_hua[78:86] + cell.cell_id
             cursor.execute(query)
             result_set = cursor.fetchall()
             if result_set:
                 return result_set
             else:
-                query = 'nsn'
+                query = self.net_data_2g_nsn[:141] + cell.lac + self.net_data_2g_nsn[146:158] + cell.cell_id
                 cursor.execute(query)
                 result_set = cursor.fetchall()
                 if result_set:
                     return result_set
                 else:
-                    query = 'zte'
+                    query = self.net_data_2g_zte[:109] + cell.controller + self.net_data_2g_zte[114:132] + cell.cell_id
                     cursor.execute(query)
                     result_set = cursor.fetchall()
                     if result_set:

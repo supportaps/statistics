@@ -593,6 +593,7 @@ class Gui:
                     found_ci = str(self.unique_result[_][1])
                     found_controller = self.unique_result[_][5]
                     cell = Cell(found_name, found_ci, found_lac, found_controller)
+
                     return cell
 
     def get_data_for_graphics_by_cell_name(self):
@@ -612,6 +613,7 @@ class Gui:
         #print("CELL IS:",cell)
         cell = self.search_cell_parameters()
         self.update_plots(cell)
+        self.kpi_data.get_parameters_for_cell(self.get_name(), cell)
 
     def get_data_for_graphics_by_lac_ci(self):
         cell = self.search_cell_parameters()
