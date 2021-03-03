@@ -576,27 +576,46 @@ class Gui:
         self.graphic.update_plot_graphik7(res7,n)
         self.graphic.update_plot_graphik8(res8,n)
 
-    def get_data_for_graphics_by_cell_name(self):
-        found_name = ''
-        found_lac = ''
-        found_ci = ''
+    def search_cell_parameters(self):
         for _ in range(len(self.unique_result)):
             if None not in self.unique_result[_]:
-                cn =  self.unique_result[_][2] + self.unique_result[_][3] + self.unique_result[_][4]
-                if cn == self.get_cell_name_from_ent():
+                combined_cell_name = self.unique_result[_][2] + self.unique_result[_][3] + self.unique_result[_][4]
+                if self.get_cell_name_from_ent() and combined_cell_name == self.get_cell_name_from_ent():
                     found_name = self.unique_result[_][2] + self.unique_result[_][3] + self.unique_result[_][4]
                     found_lac = str(self.unique_result[_][0])
-                    found_ci =  str(self.unique_result[_][1])
+                    found_ci = str(self.unique_result[_][1])
                     found_controller = self.unique_result[_][5]
+                    cell = Cell(found_name, found_ci, found_lac, found_controller)
+                    return cell
+                elif self.get_ci() and self.get_lac_tac() and self.get_ci() == self.unique_result[_][1] and self.get_lac_tac() == self.unique_result[_][0]:
+                    found_name = self.unique_result[_][2] + self.unique_result[_][3] + self.unique_result[_][4]
+                    found_lac = str(self.unique_result[_][0])
+                    found_ci = str(self.unique_result[_][1])
+                    found_controller = self.unique_result[_][5]
+                    cell = Cell(found_name, found_ci, found_lac, found_controller)
+                    return cell
 
-        cell = Cell(found_name, found_ci, found_lac, found_controller)
+    def get_data_for_graphics_by_cell_name(self):
 
-        #self.get_results_from_source(cell)
+       # for _ in range(len(self.unique_result)):
+            #if None not in self.unique_result[_]:
+                #cn =  self.unique_result[_][2] + self.unique_result[_][3] + self.unique_result[_][4]
+                #if cn == self.get_cell_name_from_ent():
+                   # found_name = self.unique_result[_][2] + self.unique_result[_][3] + self.unique_result[_][4]
+                    #found_lac = str(self.unique_result[_][0])
+                   # found_ci =  str(self.unique_result[_][1])
+                   # found_controller = self.unique_result[_][5]
+
+
+
+        #cell = Cell(found_name, found_ci, found_lac, found_controller)
+        #print("CELL IS:",cell)
+        cell = self.search_cell_parameters()
         self.update_plots(cell)
 
     def get_data_for_graphics_by_lac_ci(self):
-
-        cell = Cell(self.get_cell_name_from_ent(), self.get_ci(), self.get_lac_tac())
+        cell = self.search_cell_parameters()
+        #cell = Cell(self.get_cell_name_from_ent(), self.get_ci(), self.get_lac_tac())
 
         kpi_item = Kpi(self.get_kpi_columns(), self.cal_start_chosen_date_var.get(), self.cal_end_chosen_date_var.get())
         n = self.get_name()
