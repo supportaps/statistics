@@ -176,6 +176,7 @@ class Gui:
         self.cb_items.append(self.cb8)
 
         # graph1 = self.graphic.draw_plot(self.main_window)
+        #self.cellinfo = Cellinfo(self.output_data_present1,None)
         self.graphic = Graphic(self.output_data_present1)
 
 
@@ -567,6 +568,7 @@ class Gui:
 
     def update_plots(self,cell):
         res1,res2,res3,res4,res5,res6,res7,res8, n = self.get_results_from_source(cell)
+        self.graphic.update_figure_label(cell)
         self.graphic.update_plot_graphik1(res1,n)
         self.graphic.update_plot_graphik2(res2,n)
         self.graphic.update_plot_graphik3(res3,n)
@@ -575,6 +577,7 @@ class Gui:
         self.graphic.update_plot_graphik6(res6,n)
         self.graphic.update_plot_graphik7(res7,n)
         self.graphic.update_plot_graphik8(res8,n)
+        print("UPDATE_PLOTS: ", cell)
 
     def search_cell_parameters(self):
         for _ in range(len(self.unique_result)):
@@ -613,7 +616,12 @@ class Gui:
         #print("CELL IS:",cell)
         cell = self.search_cell_parameters()
         self.update_plots(cell)
-        self.kpi_data.get_parameters_for_cell(self.get_name(), cell)
+        info_cell_data_result = self.kpi_data.get_parameters_for_cell(self.get_name(), cell)
+        print("info_cell_data_result: ", info_cell_data_result)
+        #self.cellinfo.set_infodata(info_cell_data_result)
+        #self.cellinfo.fill_info_data_into_treview()
+
+        #infocell.result_tuple = info_cell_data_result
 
     def get_data_for_graphics_by_lac_ci(self):
         cell = self.search_cell_parameters()

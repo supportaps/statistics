@@ -3,10 +3,12 @@ import matplotlib as mpl
 from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg)
 from matplotlib.figure import Figure
+from matplotlib.ticker import MultipleLocator
 
 from gui.cellinfo import Cellinfo
 from gui.scroll import Scroll
 import matplotlib.style
+import matplotlib.dates as mdates
 
 
 
@@ -31,10 +33,11 @@ class Graphic:
         self.fig1 = Figure()
 
         self.ax1 = self.fig1.add_subplot(8, 1, 1)
-        self.ax1.scatter(10, 10, alpha=0.2)
-
+        self.ax1.scatter('2021-01-01', 20, alpha=0.2)
+        self.ax1.tick_params(axis='x',labelrotation=45)
         self.ax2 = self.fig1.add_subplot(8, 1, 2)
         self.ax2.plot(2.2, 2)
+        self.ax2.set_xticklabels(['a', 'b', 'c', 'd', 'e'],rotation=45)
         self.ax3 = self.fig1.add_subplot(813)
         self.ax3.plot(2.2, 2)
         self.ax4 = self.fig1.add_subplot(814)
@@ -56,7 +59,7 @@ class Graphic:
         vertical_scroll = Scroll(self.canvas1, self.frame1, self.fig1)
         self.canvas1.get_tk_widget().itemconfigure(self.fig1, width=300, height=300 )
 
-        self.cellinfo = Cellinfo(self.frame1,cell=None)
+
 
         self.canvas1.draw()
         self.canvas1.get_tk_widget().pack(side='right')
@@ -67,14 +70,7 @@ class Graphic:
 
         self.canvas1.mpl_connect('resize_event', self.resize)
 
-        # self.axes[0].plot(10, 10)
-        # self.axes[1].plot(10, 10)
-        # self.axes[2].plot(10, 10)
-        # self.axes[3].plot(10, 10)
-        # self.axes[4].plot(10, 10)
-        # self.axes[5].plot(10, 10)
-        # self.axes[6].plot(10, 10)
-        # self.axes[7].plot(10, 10)
+
 
 
         print("BACKEND: ", mpl.rcParams)
@@ -128,27 +124,9 @@ class Graphic:
         print("state", self.fig1.__getstate__())
 
 
-
-        #layout = QtWidgets.QVBoxLayout(self.frame)
-
-
-
-
-
-
-
-
     def canvas_dimen(self, event):
         canvas_width = event.width
         print("canvas_width: ",canvas_width)
-
-
-
-
-
-
-
-
 
 
     def resize(self, event):
@@ -168,13 +146,14 @@ class Graphic:
         print(copy)
         self.canvas1.get_tk_widget()
 
+    def update_figure_label(self, cell):
+
+        self.fig1.suptitle("BSC: " + cell.controller + " ,Cell Name: " + cell.name + " ,LAC: " + cell.lac + " ,CI: " + cell.cell_id,
+                           fontsize=16, color='blue', x=0.001, y=.99, horizontalalignment='left')
 
 
 
-
-
-
-
+        #self.fig1.tight_layout()
     def update_plot_graphik1(self, result_data_graphic, n):
 
         self.x.clear()
@@ -203,6 +182,13 @@ class Graphic:
         self.ax1.clear()
         self.ax1.plot(self.x, self.y, color='red', marker='o', alpha=0.5, linewidth=2.5, markersize=3)
         self.ax1.fill_between(self.x, 0, self.y, facecolor='red', alpha=0.2)
+        self.ax1.tick_params(axis='x',labelrotation=45)
+
+        fmt_major_date = mdates.DayLocator(bymonthday=None, interval=7, tz=None)
+        self.ax1.xaxis.set_major_locator(fmt_major_date)
+        fmt_minor_date = mdates.DayLocator()
+        self.ax1.xaxis.set_minor_locator(fmt_minor_date)
+
         self.canvas1.flush_events()
         self.canvas1.draw()
 
@@ -234,6 +220,7 @@ class Graphic:
         self.ax2.clear()
         self.ax2.plot(self.x, self.y, color='red', marker='o', alpha=0.1)
         self.ax2.fill_between(self.x, 0, self.y, facecolor='red', alpha=0.5)
+        self.ax2.set_xticklabels(self.x,rotation=45)
         self.canvas1.flush_events()
         self.canvas1.draw()
 
@@ -416,3 +403,6 @@ class Graphic:
         self.ax8.fill_between(self.x, 0, self.y, facecolor='red', alpha=0.5)
         self.canvas1.flush_events()
         self.canvas1.draw()
+
+
+
