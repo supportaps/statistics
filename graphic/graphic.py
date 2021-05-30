@@ -9,6 +9,7 @@ from gui.cellinfo import Cellinfo
 from gui.scroll import Scroll
 import matplotlib.style
 import matplotlib.dates as mdates
+from numpy import np
 
 
 
@@ -153,7 +154,21 @@ class Graphic:
 
 
 
-        #self.fig1.tight_layout()
+    def set_tick(self, ax, x):
+        elements = len(x)
+        interval=2
+        if elements >= 720:
+            interval = 7
+
+
+        ax.tick_params(axis='x', labelrotation=45)
+        fmt_major_date = mdates.DayLocator(bymonthday=None, interval=interval, tz=None)
+        ax.xaxis.set_major_locator(fmt_major_date)
+        fmt_minor_date = mdates.DayLocator()
+        ax.xaxis.set_minor_locator(fmt_minor_date)
+
+    
+
     def update_plot_graphik1(self, result_data_graphic, n):
 
         self.x.clear()
@@ -182,8 +197,8 @@ class Graphic:
         self.ax1.clear()
         self.ax1.plot(self.x, self.y, color='red', marker='o', alpha=0.5, linewidth=2.5, markersize=3)
         self.ax1.fill_between(self.x, 0, self.y, facecolor='red', alpha=0.2)
-        self.ax1.tick_params(axis='x',labelrotation=45)
 
+        self.ax1.tick_params(axis='x',labelrotation=45)
         fmt_major_date = mdates.DayLocator(bymonthday=None, interval=7, tz=None)
         self.ax1.xaxis.set_major_locator(fmt_major_date)
         fmt_minor_date = mdates.DayLocator()
@@ -252,6 +267,9 @@ class Graphic:
         self.ax3.clear()
         self.ax3.plot(self.x, self.y, color='red', marker='o', alpha=0.1)
         self.ax3.fill_between(self.x, 0, self.y, facecolor='red', alpha=0.5)
+
+        self.set_tick(self.ax3,self.x)
+
         self.canvas1.flush_events()
         self.canvas1.draw()
 
