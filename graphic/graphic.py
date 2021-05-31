@@ -167,6 +167,16 @@ class Graphic:
         minimum = numpy.min(y)
         return minimum
 
+    def calculate_second_maximum(self, y):
+
+        y.sort()
+        return y[-2]
+
+    def calculate_third_maximum(self, y):
+
+        y.sort()
+        return y[-3]
+
     def update_plot_graphik1(self, result_data_graphic, n):
 
         self.x.clear()
@@ -263,8 +273,8 @@ class Graphic:
 
         self.set_tick(self.ax3, self.x)
 
-        self.ax3.text(0.99, 0.95,
-                      f"avg = {self.calculate_avg(self.y)}\nrms = {self.calculate_rms(self.y)}\nmax = {self.calculate_maximum(self.y)}\nmin = {self.calculate_minimum(self.y)}",
+        self.ax3.text(0.99, 0.99,
+                      f"avg = {self.calculate_avg(self.y)}\nrms = {self.calculate_rms(self.y)}\nmax1 = {self.calculate_maximum(self.y)}\nmax2 = {self.calculate_second_maximum(self.y)}\nmax3 = {self.calculate_third_maximum(self.y)}\nmin = {self.calculate_minimum(self.y)}",
                       horizontalalignment='right',
                       verticalalignment='top',
                       transform=self.ax3.transAxes)
