@@ -3,14 +3,10 @@ import matplotlib as mpl
 from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg)
 from matplotlib.figure import Figure
-from matplotlib.ticker import MultipleLocator
-
-from gui.cellinfo import Cellinfo
 from gui.scroll import Scroll
 import matplotlib.style
 import matplotlib.dates as mdates
-from numpy import np
-
+import numpy
 
 
 class Graphic:
@@ -35,10 +31,10 @@ class Graphic:
 
         self.ax1 = self.fig1.add_subplot(8, 1, 1)
         self.ax1.scatter('2021-01-01', 20, alpha=0.2)
-        self.ax1.tick_params(axis='x',labelrotation=45)
+        self.ax1.tick_params(axis='x', labelrotation=45)
         self.ax2 = self.fig1.add_subplot(8, 1, 2)
         self.ax2.plot(2.2, 2)
-        self.ax2.set_xticklabels(['a', 'b', 'c', 'd', 'e'],rotation=45)
+        self.ax2.set_xticklabels(['a', 'b', 'c', 'd', 'e'], rotation=45)
         self.ax3 = self.fig1.add_subplot(813)
         self.ax3.plot(2.2, 2)
         self.ax4 = self.fig1.add_subplot(814)
@@ -52,30 +48,22 @@ class Graphic:
         self.ax8 = self.fig1.add_subplot(818)
         self.ax8.plot(2.2, 2)
 
-
-
         self.fig1.tight_layout()
 
         self.canvas1 = FigureCanvasTkAgg(self.fig1, master=self.frame1)
         vertical_scroll = Scroll(self.canvas1, self.frame1, self.fig1)
-        self.canvas1.get_tk_widget().itemconfigure(self.fig1, width=300, height=300 )
-
-
+        self.canvas1.get_tk_widget().itemconfigure(self.fig1, width=300, height=300)
 
         self.canvas1.draw()
         self.canvas1.get_tk_widget().pack(side='right')
-
 
         self.canvas1.get_tk_widget().bind("<Configure>", self.canvas_dimen)
         self.canvas1.get_tk_widget().update_idletasks()
 
         self.canvas1.mpl_connect('resize_event', self.resize)
 
-
-
-
         print("BACKEND: ", mpl.rcParams)
-        print("alpha",self.fig1.get_alpha())
+        print("alpha", self.fig1.get_alpha())
         print("axes", self.fig1.get_axes)
         print("agg_filter", self.fig1.get_agg_filter())
         print("dpi", self.fig1.get_dpi())
@@ -124,14 +112,11 @@ class Graphic:
 
         print("state", self.fig1.__getstate__())
 
-
     def canvas_dimen(self, event):
         canvas_width = event.width
-        print("canvas_width: ",canvas_width)
-
+        print("canvas_width: ", canvas_width)
 
     def resize(self, event):
-
 
         self.fig1.tight_layout()
         self.fig1.set_dpi(80)
@@ -139,8 +124,8 @@ class Graphic:
         fig_weight = self.fig1.get_figwidth()
         fig_height = self.fig1.get_figheight()
         dpi = self.fig1.get_dpi()
-        print(fig_weight,fig_height, dpi)
-        #self.canvas1.get_tk_widget().config(width=fig_weight*dpi, height=fig_height*dpi)
+        print(fig_weight, fig_height, dpi)
+        # self.canvas1.get_tk_widget().config(width=fig_weight*dpi, height=fig_height*dpi)
         x1, y1, x2, y2 = self.canvas1.get_tk_widget().bbox("all")
         print(x1, y1, x2, y2)
         copy = self.canvas1.copy_from_bbox(self.canvas1.get_tk_widget().bbox("all"))
@@ -149,17 +134,15 @@ class Graphic:
 
     def update_figure_label(self, cell):
 
-        self.fig1.suptitle("BSC: " + cell.controller + " ,Cell Name: " + cell.name + " ,LAC: " + cell.lac + " ,CI: " + cell.cell_id,
-                           fontsize=16, color='blue', x=0.001, y=.99, horizontalalignment='left')
-
-
+        self.fig1.suptitle(
+            "BSC: " + cell.controller + " ,Cell Name: " + cell.name + " ,LAC: " + cell.lac + " ,CI: " + cell.cell_id,
+            fontsize=16, color='blue', x=0.001, y=.99, horizontalalignment='left')
 
     def set_tick(self, ax, x):
         elements = len(x)
-        interval=2
+        interval = 2
         if elements >= 720:
             interval = 7
-
 
         ax.tick_params(axis='x', labelrotation=45)
         fmt_major_date = mdates.DayLocator(bymonthday=None, interval=interval, tz=None)
@@ -167,7 +150,22 @@ class Graphic:
         fmt_minor_date = mdates.DayLocator()
         ax.xaxis.set_minor_locator(fmt_minor_date)
 
-    
+    def calculate_rms(self, y):
+
+        rms = numpy.std(y)
+        return numpy.round(rms, 2)
+
+    def calculate_avg(self, y):
+        average = numpy.mean(y)
+        return numpy.round(average, 2)
+
+    def calculate_maximum(self, y):
+        maximum = numpy.max(y)
+        return maximum
+
+    def calculate_minimum(self, y):
+        minimum = numpy.min(y)
+        return minimum
 
     def update_plot_graphik1(self, result_data_graphic, n):
 
@@ -184,7 +182,6 @@ class Graphic:
                 date_point = result_data_graphic[item][0]
                 y_value = result_data_graphic[item][1]
 
-
             self.x.append(date_point)
             if y_value is None:
 
@@ -198,7 +195,7 @@ class Graphic:
         self.ax1.plot(self.x, self.y, color='red', marker='o', alpha=0.5, linewidth=2.5, markersize=3)
         self.ax1.fill_between(self.x, 0, self.y, facecolor='red', alpha=0.2)
 
-        self.ax1.tick_params(axis='x',labelrotation=45)
+        self.ax1.tick_params(axis='x', labelrotation=45)
         fmt_major_date = mdates.DayLocator(bymonthday=None, interval=7, tz=None)
         self.ax1.xaxis.set_major_locator(fmt_major_date)
         fmt_minor_date = mdates.DayLocator()
@@ -206,7 +203,6 @@ class Graphic:
 
         self.canvas1.flush_events()
         self.canvas1.draw()
-
 
     def update_plot_graphik2(self, result_data_graphic, n):
 
@@ -223,7 +219,6 @@ class Graphic:
                 date_point = result_data_graphic[item][0]
                 y_value = result_data_graphic[item][1]
 
-
             self.x.append(date_point)
             if y_value is None:
 
@@ -235,7 +230,7 @@ class Graphic:
         self.ax2.clear()
         self.ax2.plot(self.x, self.y, color='red', marker='o', alpha=0.1)
         self.ax2.fill_between(self.x, 0, self.y, facecolor='red', alpha=0.5)
-        self.ax2.set_xticklabels(self.x,rotation=45)
+        self.ax2.set_xticklabels(self.x, rotation=45)
         self.canvas1.flush_events()
         self.canvas1.draw()
 
@@ -254,7 +249,6 @@ class Graphic:
                 date_point = result_data_graphic[item][0]
                 y_value = result_data_graphic[item][1]
 
-
             self.x.append(date_point)
             if y_value is None:
 
@@ -263,12 +257,17 @@ class Graphic:
 
                 self.y.append(y_value)
 
-
         self.ax3.clear()
         self.ax3.plot(self.x, self.y, color='red', marker='o', alpha=0.1)
         self.ax3.fill_between(self.x, 0, self.y, facecolor='red', alpha=0.5)
 
-        self.set_tick(self.ax3,self.x)
+        self.set_tick(self.ax3, self.x)
+
+        self.ax3.text(0.99, 0.95,
+                      f"avg = {self.calculate_avg(self.y)}\nrms = {self.calculate_rms(self.y)}\nmax = {self.calculate_maximum(self.y)}\nmin = {self.calculate_minimum(self.y)}",
+                      horizontalalignment='right',
+                      verticalalignment='top',
+                      transform=self.ax3.transAxes)
 
         self.canvas1.flush_events()
         self.canvas1.draw()
@@ -287,7 +286,6 @@ class Graphic:
             else:
                 date_point = result_data_graphic[item][0]
                 y_value = result_data_graphic[item][1]
-
 
             self.x.append(date_point)
             if y_value is None:
@@ -347,7 +345,6 @@ class Graphic:
                 date_point = result_data_graphic[item][0]
                 y_value = result_data_graphic[item][1]
 
-
             self.x.append(date_point)
             if y_value is None:
 
@@ -376,7 +373,6 @@ class Graphic:
             else:
                 date_point = result_data_graphic[item][0]
                 y_value = result_data_graphic[item][1]
-
 
             self.x.append(date_point)
             if y_value is None:
@@ -407,7 +403,6 @@ class Graphic:
                 date_point = result_data_graphic[item][0]
                 y_value = result_data_graphic[item][1]
 
-
             self.x.append(date_point)
             if y_value is None:
 
@@ -421,6 +416,3 @@ class Graphic:
         self.ax8.fill_between(self.x, 0, self.y, facecolor='red', alpha=0.5)
         self.canvas1.flush_events()
         self.canvas1.draw()
-
-
-
