@@ -569,14 +569,14 @@ class Gui:
     def update_plots(self,cell):
         res1,res2,res3,res4,res5,res6,res7,res8, n = self.get_results_from_source(cell)
         self.graphic.update_figure_label(cell)
-        self.graphic.update_plot_graphik1(res1,n)
-        self.graphic.update_plot_graphik2(res2,n)
-        self.graphic.update_plot_graphik3(res3,n)
-        self.graphic.update_plot_graphik4(res4,n)
-        self.graphic.update_plot_graphik5(res5,n)
-        self.graphic.update_plot_graphik6(res6,n)
-        self.graphic.update_plot_graphik7(res7,n)
-        self.graphic.update_plot_graphik8(res8,n)
+        self.graphic.update_plot_graphik1(res1,n,self.get_kpi_columns()[0])
+        self.graphic.update_plot_graphik2(res2,n,self.get_kpi_columns()[1])
+        self.graphic.update_plot_graphik3(res3,n,self.get_kpi_columns()[2])
+        self.graphic.update_plot_graphik4(res4,n,self.get_kpi_columns()[3])
+        self.graphic.update_plot_graphik5(res5,n,self.get_kpi_columns()[4])
+        self.graphic.update_plot_graphik6(res6,n,self.get_kpi_columns()[5])
+        self.graphic.update_plot_graphik7(res7,n,self.get_kpi_columns()[6])
+        self.graphic.update_plot_graphik8(res8,n,self.get_kpi_columns()[7])
         print("UPDATE_PLOTS: ", cell)
 
     def search_cell_parameters(self):

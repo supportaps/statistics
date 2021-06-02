@@ -30,23 +30,37 @@ class Graphic:
         self.fig1 = Figure()
 
         self.ax1 = self.fig1.add_subplot(8, 1, 1)
-        self.ax1.scatter('2021-01-01', 20, alpha=0.2)
+        self.ax1.plot('0000-00-00', 20, alpha=0.2)
         self.ax1.tick_params(axis='x', labelrotation=45)
         self.ax2 = self.fig1.add_subplot(8, 1, 2)
         self.ax2.plot(2.2, 2)
-        self.ax2.set_xticklabels(['a', 'b', 'c', 'd', 'e'], rotation=45)
+        self.ax2.plot('0000-00-00', 20, alpha=0.2)
+        self.ax2.tick_params(axis='x', labelrotation=45)
         self.ax3 = self.fig1.add_subplot(813)
         self.ax3.plot(2.2, 2)
+        self.ax3.set_ylabel(' ')
+        self.ax3.plot('0000-00-00', 20, alpha=0.2)
+        self.ax3.tick_params(axis='x', labelrotation=45)
         self.ax4 = self.fig1.add_subplot(814)
         self.ax4.plot(2.2, 2)
+        self.ax4.plot('0000-00-00', 20, alpha=0.2)
+        self.ax4.tick_params(axis='x', labelrotation=45)
         self.ax5 = self.fig1.add_subplot(815)
         self.ax5.plot(1, 1)
+        self.ax5.plot('0000-00-00', 20, alpha=0.2)
+        self.ax5.tick_params(axis='x', labelrotation=45)
         self.ax6 = self.fig1.add_subplot(816)
         self.ax6.plot(2.2, 2)
+        self.ax6.plot('0000-00-00', 20, alpha=0.2)
+        self.ax6.tick_params(axis='x', labelrotation=45)
         self.ax7 = self.fig1.add_subplot(817)
         self.ax7.plot(2.2, 2)
+        self.ax7.plot('0000-00-00', 20, alpha=0.2)
+        self.ax7.tick_params(axis='x', labelrotation=45)
         self.ax8 = self.fig1.add_subplot(818)
         self.ax8.plot(2.2, 2)
+        self.ax8.plot('0000-00-00', 20, alpha=0.2)
+        self.ax8.tick_params(axis='x', labelrotation=45)
 
         self.fig1.tight_layout()
 
@@ -177,7 +191,7 @@ class Graphic:
         y.sort()
         return y[-3]
 
-    def update_plot_graphik1(self, result_data_graphic, n):
+    def update_plot_graphik1(self, result_data_graphic, n, kpi_name):
 
         self.x.clear()
         self.y.clear()
@@ -205,16 +219,20 @@ class Graphic:
         self.ax1.plot(self.x, self.y, color='red', marker='o', alpha=0.5, linewidth=2.5, markersize=3)
         self.ax1.fill_between(self.x, 0, self.y, facecolor='red', alpha=0.2)
 
-        self.ax1.tick_params(axis='x', labelrotation=45)
-        fmt_major_date = mdates.DayLocator(bymonthday=None, interval=7, tz=None)
-        self.ax1.xaxis.set_major_locator(fmt_major_date)
-        fmt_minor_date = mdates.DayLocator()
-        self.ax1.xaxis.set_minor_locator(fmt_minor_date)
+        self.ax1.set_ylabel(kpi_name)
+
+        self.set_tick(self.ax1, self.x)
+
+        self.ax1.text(0.99, 0.99,
+                      f"avg = {self.calculate_avg(self.y)}\nrms = {self.calculate_rms(self.y)}\nmax1 = {self.calculate_maximum(self.y)}\nmax2 = {self.calculate_second_maximum(self.y)}\nmax3 = {self.calculate_third_maximum(self.y)}\nmin = {self.calculate_minimum(self.y)}",
+                      horizontalalignment='right',
+                      verticalalignment='top',
+                      transform=self.ax1.transAxes)
 
         self.canvas1.flush_events()
         self.canvas1.draw()
 
-    def update_plot_graphik2(self, result_data_graphic, n):
+    def update_plot_graphik2(self, result_data_graphic, n, kpi_name):
 
         self.x.clear()
         self.y.clear()
@@ -240,11 +258,21 @@ class Graphic:
         self.ax2.clear()
         self.ax2.plot(self.x, self.y, color='red', marker='o', alpha=0.1)
         self.ax2.fill_between(self.x, 0, self.y, facecolor='red', alpha=0.5)
-        self.ax2.set_xticklabels(self.x, rotation=45)
+
+        self.ax2.set_ylabel(kpi_name)
+
+        self.set_tick(self.ax2, self.x)
+
+        self.ax2.text(0.99, 0.99,
+                      f"avg = {self.calculate_avg(self.y)}\nrms = {self.calculate_rms(self.y)}\nmax1 = {self.calculate_maximum(self.y)}\nmax2 = {self.calculate_second_maximum(self.y)}\nmax3 = {self.calculate_third_maximum(self.y)}\nmin = {self.calculate_minimum(self.y)}",
+                      horizontalalignment='right',
+                      verticalalignment='top',
+                      transform=self.ax2.transAxes)
+
         self.canvas1.flush_events()
         self.canvas1.draw()
 
-    def update_plot_graphik3(self, result_data_graphic, n):
+    def update_plot_graphik3(self, result_data_graphic, n, kpi_name):
 
         self.x.clear()
         self.y.clear()
@@ -271,6 +299,9 @@ class Graphic:
         self.ax3.plot(self.x, self.y, color='red', marker='o', alpha=0.1)
         self.ax3.fill_between(self.x, 0, self.y, facecolor='red', alpha=0.5)
 
+        self.ax3.set_ylabel(kpi_name)
+
+
         self.set_tick(self.ax3, self.x)
 
         self.ax3.text(0.99, 0.99,
@@ -282,7 +313,7 @@ class Graphic:
         self.canvas1.flush_events()
         self.canvas1.draw()
 
-    def update_plot_graphik4(self, result_data_graphic, n):
+    def update_plot_graphik4(self, result_data_graphic, n, kpi_name):
 
         self.x.clear()
         self.y.clear()
@@ -308,10 +339,21 @@ class Graphic:
         self.ax4.clear()
         self.ax4.plot(self.x, self.y, color='red', marker='o', alpha=0.1)
         self.ax4.fill_between(self.x, 0, self.y, facecolor='red', alpha=0.5)
+
+        self.ax4.set_ylabel(kpi_name)
+
+        self.set_tick(self.ax4, self.x)
+
+        self.ax4.text(0.99, 0.99,
+                      f"avg = {self.calculate_avg(self.y)}\nrms = {self.calculate_rms(self.y)}\nmax1 = {self.calculate_maximum(self.y)}\nmax2 = {self.calculate_second_maximum(self.y)}\nmax3 = {self.calculate_third_maximum(self.y)}\nmin = {self.calculate_minimum(self.y)}",
+                      horizontalalignment='right',
+                      verticalalignment='top',
+                      transform=self.ax4.transAxes)
+
         self.canvas1.flush_events()
         self.canvas1.draw()
 
-    def update_plot_graphik5(self, result_data_graphic, n):
+    def update_plot_graphik5(self, result_data_graphic, n, kpi_name):
 
         self.x.clear()
         self.y.clear()
@@ -337,10 +379,21 @@ class Graphic:
         self.ax5.clear()
         self.ax5.plot(self.x, self.y, color='red', marker='o', alpha=0.1)
         self.ax5.fill_between(self.x, 0, self.y, facecolor='red', alpha=0.5)
+
+        self.ax5.set_ylabel(kpi_name)
+
+        self.set_tick(self.ax5, self.x)
+
+        self.ax5.text(0.99, 0.99,
+                      f"avg = {self.calculate_avg(self.y)}\nrms = {self.calculate_rms(self.y)}\nmax1 = {self.calculate_maximum(self.y)}\nmax2 = {self.calculate_second_maximum(self.y)}\nmax3 = {self.calculate_third_maximum(self.y)}\nmin = {self.calculate_minimum(self.y)}",
+                      horizontalalignment='right',
+                      verticalalignment='top',
+                      transform=self.ax5.transAxes)
+
         self.canvas1.flush_events()
         self.canvas1.draw()
 
-    def update_plot_graphik6(self, result_data_graphic, n):
+    def update_plot_graphik6(self, result_data_graphic, n, kpi_name):
 
         self.x.clear()
         self.y.clear()
@@ -366,10 +419,21 @@ class Graphic:
         self.ax6.clear()
         self.ax6.plot(self.x, self.y, color='red', marker='o', alpha=0.1)
         self.ax6.fill_between(self.x, 0, self.y, facecolor='red', alpha=0.5)
+
+        self.ax6.set_ylabel(kpi_name)
+
+        self.set_tick(self.ax6, self.x)
+
+        self.ax6.text(0.99, 0.99,
+                      f"avg = {self.calculate_avg(self.y)}\nrms = {self.calculate_rms(self.y)}\nmax1 = {self.calculate_maximum(self.y)}\nmax2 = {self.calculate_second_maximum(self.y)}\nmax3 = {self.calculate_third_maximum(self.y)}\nmin = {self.calculate_minimum(self.y)}",
+                      horizontalalignment='right',
+                      verticalalignment='top',
+                      transform=self.ax6.transAxes)
+
         self.canvas1.flush_events()
         self.canvas1.draw()
 
-    def update_plot_graphik7(self, result_data_graphic, n):
+    def update_plot_graphik7(self, result_data_graphic, n, kpi_name):
 
         self.x.clear()
         self.y.clear()
@@ -395,10 +459,21 @@ class Graphic:
         self.ax7.clear()
         self.ax7.plot(self.x, self.y, color='red', marker='o', alpha=0.1)
         self.ax7.fill_between(self.x, 0, self.y, facecolor='red', alpha=0.5)
+
+        self.ax7.set_ylabel(kpi_name)
+
+        self.set_tick(self.ax7, self.x)
+
+        self.ax7.text(0.99, 0.99,
+                      f"avg = {self.calculate_avg(self.y)}\nrms = {self.calculate_rms(self.y)}\nmax1 = {self.calculate_maximum(self.y)}\nmax2 = {self.calculate_second_maximum(self.y)}\nmax3 = {self.calculate_third_maximum(self.y)}\nmin = {self.calculate_minimum(self.y)}",
+                      horizontalalignment='right',
+                      verticalalignment='top',
+                      transform=self.ax7.transAxes)
+
         self.canvas1.flush_events()
         self.canvas1.draw()
 
-    def update_plot_graphik8(self, result_data_graphic, n):
+    def update_plot_graphik8(self, result_data_graphic, n, kpi_name):
 
         self.x.clear()
         self.y.clear()
@@ -424,5 +499,16 @@ class Graphic:
         self.ax8.clear()
         self.ax8.plot(self.x, self.y, color='red', marker='o', alpha=0.1)
         self.ax8.fill_between(self.x, 0, self.y, facecolor='red', alpha=0.5)
+
+        self.ax8.set_ylabel(kpi_name)
+
+        self.set_tick(self.ax8, self.x)
+
+        self.ax8.text(0.99, 0.99,
+                      f"avg = {self.calculate_avg(self.y)}\nrms = {self.calculate_rms(self.y)}\nmax1 = {self.calculate_maximum(self.y)}\nmax2 = {self.calculate_second_maximum(self.y)}\nmax3 = {self.calculate_third_maximum(self.y)}\nmin = {self.calculate_minimum(self.y)}",
+                      horizontalalignment='right',
+                      verticalalignment='top',
+                      transform=self.ax8.transAxes)
+
         self.canvas1.flush_events()
         self.canvas1.draw()
